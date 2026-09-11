@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Host Policy Update | BoloUp</title>
+  <style>
+    :root{--ink:#101343;--muted:#626d9b;--panel:#fff;--line:#e6e8f5;--violet:#6b3de0;--purple:#a154f6;--gold:#f5a524;--sky:#35c8ff;--bg:#f5f5ff}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;line-height:1.55}
+    .hero{overflow:hidden;position:relative;background:radial-gradient(circle at 90% 20%,#a84cf444 0 11%,transparent 32%),radial-gradient(circle at 10% 120%,#23d0ff42 0 15%,transparent 38%),linear-gradient(135deg,#0b1039,#25105f 57%,#151246);color:#fff;padding:70px 22px 84px}.hero:after{content:"✦  ◇  ✦";position:absolute;right:5%;top:30px;color:#ffe06a;font-size:40px;letter-spacing:17px;opacity:.9}.wrap{position:relative;z-index:1;width:min(100%,980px);margin:auto}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;color:#b7c9ff}.hero h1{max-width:680px;font-size:clamp(42px,7vw,75px);letter-spacing:-.06em;line-height:.96;margin:18px 0 20px}.hero h1 span{display:block;background:linear-gradient(90deg,#71e5ff,#cf93ff 52%,#ff9ee2);-webkit-background-clip:text;background-clip:text;color:transparent}.hero p{max-width:640px;margin:0;color:#d8dcff;font-size:18px}.pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{border:1px solid #b083ff77;border-radius:999px;padding:8px 13px;font-size:13px;font-weight:700;background:#ffffff12}
+    nav{position:sticky;top:0;z-index:5;background:#ffffffec;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}nav .wrap{display:flex;gap:8px;overflow:auto;padding:10px 20px}nav a{flex:0 0 auto;text-decoration:none;color:#555f89;font-size:14px;font-weight:800;padding:8px 12px;border-radius:10px}nav a:hover{color:#5632bb;background:#f0eaff}
+    main{width:min(100%,980px);margin:0 auto;padding:36px 22px 80px}.intro{background:#fff;border:1px solid var(--line);border-radius:24px;padding:27px 30px;box-shadow:0 14px 34px #18134e0a}.intro h2,.section-heading h2{margin:0;color:#15154a;font-size:28px;letter-spacing:-.03em}.intro p{margin:8px 0 0;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:20px}.stat{border-radius:18px;padding:18px;background:linear-gradient(135deg,#f0eaff,#fff);border:1px solid #e5d6ff}.stat b{display:block;color:#6b3de0;font-size:13px;letter-spacing:.08em}.stat strong{display:block;font-size:27px;margin-top:4px}.stat span{font-size:14px;color:var(--muted)}
+    section{scroll-margin-top:70px;margin-top:54px}.section-heading{display:flex;align-items:center;gap:13px;margin-bottom:18px}.badge{display:grid;place-items:center;width:38px;height:38px;color:#fff;border-radius:12px;background:linear-gradient(135deg,var(--violet),var(--purple));font-weight:900}.section-heading p{margin:0;color:var(--muted)}.host-card{overflow:hidden;background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 34px #18134e0a}.host-card header{padding:25px 28px;color:#fff;background:linear-gradient(110deg,#4d27ad,#9d51ed)}.host-card.star header{background:linear-gradient(110deg,#a75c11,#f3a22b)}.host-card h3{font-size:28px;letter-spacing:-.04em;margin:0}.host-card header p{margin:5px 0 0;color:#f1eaff}.content{padding:28px}.flow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-bottom:24px}.step{min-height:124px;border:1px solid var(--line);border-radius:16px;padding:16px;background:#fcfcff}.step .num{display:block;width:25px;height:25px;border-radius:50%;text-align:center;line-height:25px;background:#eee8ff;color:#6136c7;font-size:13px;font-weight:900}.step h4{font-size:16px;margin:10px 0 4px}.step p{color:var(--muted);font-size:14px;margin:0}.callout{border-left:4px solid var(--violet);border-radius:0 14px 14px 0;background:#f7f3ff;padding:15px 17px;margin:20px 0}.star .callout{border-color:var(--gold);background:#fff7e9}.callout b{display:block;margin-bottom:4px}.callout p{color:#56608d;margin:0;font-size:15px}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}table{width:100%;border-collapse:collapse;min-width:670px;background:#fff}th{padding:14px 16px;text-align:left;background:#22165a;color:#fff;font-size:13px;letter-spacing:.02em}td{padding:15px 16px;border-top:1px solid var(--line);vertical-align:top;font-size:14px}tr:nth-child(even) td{background:#fbfaff}td strong{color:#332375}.level{display:inline-flex;align-items:center;gap:7px;font-weight:850}.dot{width:9px;height:9px;border-radius:50%;background:var(--sky)}.dot.v{background:#a460f7}.dot.g{background:var(--gold)}
+    .two-col{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;margin-top:20px}.rule-list{margin:0;padding:0;list-style:none}.rule-list li{position:relative;padding:12px 0 12px 27px;border-bottom:1px solid var(--line);color:#515b87}.rule-list li:before{content:"✓";position:absolute;left:0;top:12px;font-weight:900;color:#6237d0}.panel{border-radius:18px;padding:22px;background:linear-gradient(135deg,#151142,#272064);color:#fff}.panel h4{font-size:20px;margin:0 0 8px}.panel p{color:#d5d5fa;margin:0;font-size:14px}.panel .big{margin:16px 0 4px;font-size:31px;font-weight:900;letter-spacing:-.04em;color:#ffdc70}.panel small{color:#c3c8f9}.footer-note{margin-top:38px;text-align:center;color:#727ca7;font-size:14px}.footer-note b{color:#3b326f}@media(max-width:700px){.hero{padding:54px 20px 64px}.hero:after{opacity:.35;font-size:28px}.grid,.flow,.two-col{grid-template-columns:1fr}.intro{padding:22px}.content{padding:20px}.host-card header{padding:22px}.flow{gap:10px}.step{min-height:0}.section-heading{align-items:flex-start}.section-heading h2{font-size:25px}.hero p{font-size:16px}}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="eyebrow">BOLOUP · HOST PROGRAM</div>
+      <h1>Host Policy <span>Update</span></h1>
+      <p>Everything you need to know about Talented Host and Star Host levels, weekly reviews, salary limits, and the path to upgrade.</p>
+      <div class="pillrow"><span class="pill">1 USD = 10K diamonds</span><span class="pill">Weekly review</span><span class="pill">Salary paid by system</span></div>
+    </div>
+  </header>
+  <nav><div class="wrap"><a href="#overview">Overview</a><a href="#talented">Talented Host</a><a href="#star">Star Host</a><a href="#apply">Apply for Star Host</a></div></nav>
+  <main>
+    <section class="intro" id="overview">
+      <h2>What is changing?</h2>
+      <p>Both programs now use clear weekly level reviews. Your current level determines your available tasks and maximum weekly salary. Check the full in-app policy page for every task and eligibility requirement.</p>
+      <div class="grid">
+        <div class="stat"><b>TALENTED HOST</b><strong>Levels 1–3</strong><span>Progress by actual working week</span></div>
+        <div class="stat"><b>STAR HOST</b><strong>Levels 1–3</strong><span>Move up or down after weekly review</span></div>
+      </div>
+    </section>
+    <section id="talented">
+      <div class="section-heading"><div class="badge">1</div><div><h2>Talented Host</h2><p>Build your way toward Star Host.</p></div></div>
+      <article class="host-card">
+        <header><h3>Weekly progression & salary</h3><p>Your level changes automatically as you continue in the program.</p></header>
+        <div class="content">
+          <div class="flow">
+            <div class="step"><span class="num">1</span><h4>Level 1</h4><p>Your first actual working week.</p></div>
+            <div class="step"><span class="num">2</span><h4>Level 2</h4><p>Your second actual working week.</p></div>
+            <div class="step"><span class="num">3</span><h4>Level 3</h4><p>Your third working week and beyond.</p></div>
+          </div>
+          <div class="callout"><b>Weekly status review</b><p>Meet the Lucky Gift requirement for your current level to keep Talented Host status. If you do not meet it, your special-host status ends and your salary returns to the Basic Live plan.</p></div>
+          <div class="table-wrap"><table><thead><tr><th>Level</th><th>Weekly Lucky Gift requirement</th><th>Maximum weekly salary</th></tr></thead><tbody><tr><td><span class="level"><i class="dot"></i>Level 1</span></td><td>20K diamonds or more</td><td><strong>200K diamonds</strong></td></tr><tr><td><span class="level"><i class="dot v"></i>Level 2</span></td><td>30K diamonds or more</td><td><strong>210K diamonds</strong></td></tr><tr><td><span class="level"><i class="dot g"></i>Level 3</span></td><td>40K diamonds or more</td><td><strong>260K diamonds</strong></td></tr></tbody></table></div>
+          <p class="footer-note">Up to <b>3 hours of live time per day</b> counts toward Talented Host salary tasks.</p>
+        </div>
+      </article>
+    </section>
+    <section id="star">
+      <div class="section-heading"><div class="badge" style="background:linear-gradient(135deg,#c6751b,#f4a72a)">2</div><div><h2>Star Host</h2><p>Higher rewards, reviewed each week.</p></div></div>
+      <article class="host-card star">
+        <header><h3>Level determination, movement & salary</h3><p>Your first week confirms your starting level. After that, your weekly results decide your next level.</p></header>
+        <div class="content">
+          <div class="callout"><b>Your first week is the level-determination week</b><p>Your initial level is set from your Lucky Gift result in the previous week. From then on, review happens weekly; each review can move you up or down by no more than one level.</p></div>
+          <div class="table-wrap"><table><thead><tr><th>Current level</th><th>Stay at this level</th><th>Move next week</th><th>Maximum weekly salary</th></tr></thead><tbody><tr><td><span class="level"><i class="dot"></i>Level 1</span></td><td>Lucky Gift ≥ 400K</td><td>Below 400K → Level 2</td><td><strong>1.33M diamonds</strong></td></tr><tr><td><span class="level"><i class="dot v"></i>Level 2</span></td><td>100K–399K</td><td>≥ 400K → Level 1<br>Below 100K → Level 3</td><td><strong>970K diamonds</strong></td></tr><tr><td><span class="level"><i class="dot g"></i>Level 3</span></td><td>70K–99K</td><td>≥ 100K → Level 2<br>Below 70K → Talented Host Level 3</td><td><strong>750K diamonds</strong></td></tr></tbody></table></div>
+          <div class="two-col"><ul class="rule-list"><li>Each task is independent; completed task rewards add together up to your level’s weekly maximum.</li><li>Up to <strong>4 hours of live time per day</strong> counts toward Star Host tasks.</li><li>Each weekly cycle starts Monday at 00:00 (UTC+8).</li><li>Salary is issued by the system; no manual claim is needed.</li></ul><aside class="panel"><h4>Keep your status safe</h4><p>Fraud, cheating, or platform-rule violations can immediately remove your special-host eligibility. Three warnings in one month may also result in the loss of Star Host status.</p><div class="big">Review weekly.</div><small>Keep live content compliant and meet your level’s Lucky Gift requirement.</small></aside></div>
+        </div>
+      </article>
+    </section>
+    <section id="apply">
+      <div class="section-heading"><div class="badge">3</div><div><h2>Ready to apply for Star Host?</h2><p>Star Host is not an automatic upgrade.</p></div></div>
+      <article class="host-card"><div class="content"><div class="two-col"><div><h3 style="margin-top:0">Who can apply</h3><ul class="rule-list"><li>You are currently a <strong>Talented Host Level 3</strong>.</li><li>Your average Lucky Gift income across the latest two continuous weeks is <strong>above 200K diamonds</strong>.</li><li>You submit an application to the official channel after meeting both conditions.</li></ul></div><aside class="panel"><h4>Manual review required</h4><p>Meeting the eligibility requirements lets you apply, but does not guarantee promotion. The platform reviews live performance, content quality, activity, audience interaction, and rule compliance.</p></aside></div></div></article>
+    </section>
+    <p class="footer-note"><b>Need the full rule details?</b> Open the Talented Host or Star Host policy page in the app. This page is a guide to key changes and does not replace the complete policy.</p>
+  </main>
+</body>
+</html>
