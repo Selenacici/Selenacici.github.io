@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talented Host 名单比对结论</title>
+  <style>
+    :root { --ink:#162033; --muted:#667085; --line:#dfe5ee; --blue:#1d4ed8; --good:#087443; --warn:#9a5b00; --bad:#b42318; --bg:#f7f9fc; }
+    * { box-sizing:border-box; } body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif; color:var(--ink); background:var(--bg); line-height:1.6; }
+    main { max-width:1100px; margin:32px auto; padding:0 22px 48px; } section,header { background:#fff; border:1px solid var(--line); border-radius:14px; padding:24px; margin-bottom:18px; }
+    h1 { margin:0 0 6px; font-size:28px; } h2 { font-size:19px; margin:0 0 14px; } p { margin:8px 0; } .muted { color:var(--muted); font-size:14px; }
+    .finding { border-left:4px solid var(--blue); background:#eff6ff; padding:14px 16px; border-radius:6px; } table { width:100%; border-collapse:collapse; font-size:14px; }
+    th,td { padding:11px 10px; border-bottom:1px solid var(--line); text-align:left; } th { color:#475467; background:#f8fafc; font-weight:650; } td.num { text-align:right; font-variant-numeric:tabular-nums; }
+    .good { color:var(--good); font-weight:650; } .warn { color:var(--warn); font-weight:650; } .bad { color:var(--bad); font-weight:650; }
+    code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em; background:#f2f4f7; padding:2px 5px; border-radius:4px; }
+    .list { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:13px; word-break:break-word; background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px; margin:8px 0 0; }
+    ul { margin:8px 0; padding-left:22px; } @media (max-width:650px) { main { margin:16px auto; padding:0 12px 24px; } section,header { padding:16px; } table { font-size:12px; } th,td { padding:8px 6px; } }
+  </style>
+</head>
+<body><main>
+  <header><h1>Talented Host 名单比对结论</h1><p class="muted">比对日期：2026-09-14（数数页面当地时间 / UTC+8）</p><p class="muted">比对主键：后端 Excel 的 <code>uid</code> 与数数 CSV 的“账户ID”。</p></header>
+  <section><h2>1. 三套口径</h2><table><thead><tr><th>来源</th><th>实际口径</th><th class="num">人数</th></tr></thead><tbody>
+    <tr><td>后端 Excel</td><td><code>config_type = talent_host</code></td><td class="num">230</td></tr>
+    <tr><td>数数 salary mode</td><td><code>current_salary_mode</code> 等于 <code>talent_host-J-1</code>、<code>talent_host-K-1</code>、<code>talent_host-L-1</code></td><td class="num">285</td></tr>
+    <tr><td>数数 user_tag</td><td><code>user_tag</code> 存在元素 <code>Talented Host</code></td><td class="num">251</td></tr>
+  </tbody></table></section>
+  <section><h2>2. 与后端 Talented Host 的匹配情况</h2><table><thead><tr><th>数数口径</th><th class="num">数数人数</th><th class="num">与后端一致</th><th class="num">数数多出</th><th class="num">后端缺失</th></tr></thead><tbody>
+    <tr><td>salary mode</td><td class="num">285</td><td class="num">220</td><td class="num bad">65</td><td class="num warn">10</td></tr>
+    <tr><td>user_tag</td><td class="num">251</td><td class="num">229</td><td class="num warn">22</td><td class="num warn">1</td></tr>
+  </tbody></table><div class="finding"><strong>结论：</strong><code>user_tag contains "Talented Host"</code> 与后端名单最接近，覆盖后端 229/230 人（99.6%）。若目标是复现当前后端 Talented Host 配置，应优先采用这套口径，并对少量差异做同步或规则核验。</div></section>
+  <section><h2>3. 为什么会产生差异</h2><p>三份名单不是同一个身份字段的不同展示，而是三个独立维护的状态：</p><table><thead><tr><th>数据源</th><th>实际回答的问题</th></tr></thead><tbody>
+    <tr><td>后端 <code>config_type</code></td><td>后端配置表目前把谁配置为 Talented Host。</td></tr>
+    <tr><td><code>current_salary_mode</code></td><td>当前薪资体系把谁放在 Talented Host 的 J/K/L 档。</td></tr>
+    <tr><td><code>user_tag</code></td><td>当前用户标签集合中，谁带有 Talented Host 标签。</td></tr>
+  </tbody></table><p>salary mode 是单值字段的精确匹配；user_tag 是标签数组的“存在元素”匹配。用户可以同时有多个标签，而标签的产生依赖其标签规则和刷新任务。因此它们可能在不同时间写入、刷新，或采用不同准入规则。</p>
+  <p>共同的 239 人在 J/K/L 薪资等级上完全一致，说明账号关联、导出和等级分组没有系统性错误；差异来自字段值本身。</p></section>
+  <section><h2>4. 已验证的具体例子</h2><table><thead><tr><th>uid</th><th>后端配置</th><th>salary mode</th><th>user_tag</th><th>说明</th></tr></thead><tbody>
+    <tr><td><code>2143731</code></td><td>Talented Host</td><td>Talented Host</td><td>无 Talented Host</td><td>标签未覆盖该当前配置/薪资身份；可能是标签刷新滞后或规则排除。</td></tr>
+    <tr><td><code>887762</code></td><td>Talented Host</td><td>非 Talented Host</td><td>有 Talented Host</td><td>带标签不必然等于当前薪资模式仍为 Talented Host；可能是薪资模式变更后标签保留，或标签规则不完全依赖薪资模式。</td></tr>
+  </tbody></table><p>以上是证据支持的解释。每位账号具体为何不同步，尚需读取标签规则、标签刷新时间、薪资模式写入来源及后端同步链路才能定性。</p></section>
+  <section><h2>5. user_tag 与后端的逐账号差异</h2><p><strong>仅 user_tag、后端 Excel 未出现（22 人）：</strong></p><div class="list">2127371, 2188114, 2932818, 3019612, 3445385, 3463282, 3575105, 3666446, 3669361, 3696691, 3705524, 3739964, 3773518, 3776521, 3926908, 3927159, 4063973, 4104353, 4131877, 4157516, 4192097, 4286997</div><p><strong>仅后端 Excel、user_tag 缺失（1 人）：</strong></p><div class="list">user_id 2010614 / uid 2143731</div></section>
+  <section><h2>6. 建议</h2><ul><li>将 <code>user_tag contains "Talented Host"</code> 作为数数侧的当前 Talented Host 主查询口径。</li><li>将 22 个 user_tag-only 账号与后端配置同步任务核对；将 <code>uid 2143731</code> 加入 user_tag 的漏标/规则排除核验。</li><li>保留 salary mode 作为薪资资格核对，不直接用它替代后端当前配置名单。</li></ul></section>
+</main></body></html>
