@@ -1,89 +1,166 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Payroll 订单全流程时效与瓶颈分析报告｜2026年7–9月</title>
-<style>
-:root{--ink:#172033;--muted:#667085;--blue:#2457d6;--cyan:#18a0ae;--orange:#ef8b32;--red:#d64b4b;--green:#16876c;--bg:#f4f7fb;--card:#fff;--line:#e4e9f2;--soft:#edf3ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:36px 24px 72px}.hero{background:linear-gradient(130deg,#122955,#2457d6 62%,#18a0ae);color:#fff;border-radius:22px;padding:38px 42px;box-shadow:0 18px 46px #1d3e8529}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}.hero h1{font-size:34px;line-height:1.22;margin:10px 0 12px}.hero p{max-width:840px;margin:0;opacity:.9;font-size:16px}.badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.badge{background:#ffffff1c;border:1px solid #ffffff38;border-radius:99px;padding:6px 12px}.section{margin-top:34px}.section h2{font-size:23px;margin:0 0 14px}.section h3{font-size:17px;margin:0 0 8px}.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:21px;box-shadow:0 6px 18px #26375c0a}.metric{font-size:30px;font-weight:750;line-height:1.1}.label{color:var(--muted);margin-top:5px}.delta{display:inline-block;margin-top:10px;border-radius:99px;padding:4px 9px;background:#e8f7f2;color:var(--green);font-size:12px}.warn{background:#fff5e8;border-left:4px solid var(--orange)}.danger{background:#fff0f0;border-left:4px solid var(--red)}.insight{background:#eef4ff;border-left:4px solid var(--blue)}.chart{padding:22px}.row{display:grid;grid-template-columns:116px 1fr 92px;align-items:center;gap:12px;margin:12px 0}.track{height:12px;background:#edf0f5;border-radius:99px;overflow:hidden}.bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),#6a8ff4)}.bar.orange{background:linear-gradient(90deg,#ef8b32,#f7bd62)}.bar.red{background:linear-gradient(90deg,#d64b4b,#f38b8b)}.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}th{background:#edf3ff;color:#28406d;font-size:12px}th:first-child,td:first-child{text-align:left;font-weight:650}tr:last-child td{border-bottom:0}.status{display:inline-block;padding:3px 8px;border-radius:99px;font-size:12px;font-weight:650}.ok{background:#e8f7f2;color:#14715d}.blocked{background:#fff0e8;color:#a64e14}.timeline{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}.step{min-height:118px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px}.step b{display:block;font-size:13px}.step small{display:block;color:var(--muted);margin-top:7px}.step.measured{border-top:4px solid var(--blue)}.step.unknown{border-top:4px solid var(--orange);background:#fffaf3}.rank{font-size:24px;font-weight:800;color:#c8d3e8;float:right}.callout{font-size:17px;line-height:1.7}.callout strong{color:var(--blue)}.notes{color:var(--muted);font-size:12px}.footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.pill-switch{display:flex;gap:8px;margin-bottom:14px}.pill-switch button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;cursor:pointer}.pill-switch button.active{background:var(--blue);color:#fff;border-color:var(--blue)}[data-month]{display:none}[data-month].active{display:block}@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.hero{padding:28px}.hero h1{font-size:28px}.row{grid-template-columns:95px 1fr 76px}.wrap{padding:20px 14px 48px}table{font-size:12px}.table-wrap{overflow:auto}}
-.percentiles{grid-template-columns:repeat(4,1fr)}.percentile{position:relative;overflow:hidden}.percentile::after{content:"";position:absolute;right:-24px;bottom:-30px;width:92px;height:92px;border-radius:50%;background:#2457d60b}.percentile .metric{color:var(--blue)}.example{margin-top:10px;padding:9px 11px;border-radius:9px;background:#f5f8ff;color:#40567c;font-size:12px}@media(max-width:820px){.percentiles{grid-template-columns:repeat(2,1fr)}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payroll 订单全流程时效与治理优先级分析｜2026 Q3</title>
+  <style>
+    :root{--ink:#172238;--muted:#667085;--line:#e3e8ef;--paper:#fff;--bg:#f4f7fb;--blue:#3157d5;--blue2:#eaf0ff;--red:#c33c54;--red2:#fff0f2;--amber:#a96800;--amber2:#fff6dd;--green:#16775a;--green2:#e9f8f2;--shadow:0 12px 34px rgba(35,56,99,.08)}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:28px 24px 72px}.hero{background:linear-gradient(135deg,#142653 0%,#3157d5 70%,#6988ed 100%);color:#fff;border-radius:24px;padding:46px 48px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:360px;height:360px;border:80px solid rgba(255,255,255,.07);border-radius:50%;right:-150px;top:-160px}.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}.hero h1{font-size:36px;line-height:1.25;margin:10px 0 14px;max-width:820px}.hero p{max-width:820px;margin:0;opacity:.88}.meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.meta span{background:rgba(255,255,255,.12);padding:6px 11px;border-radius:99px;font-size:13px}.section{background:var(--paper);border:1px solid var(--line);border-radius:20px;margin-top:22px;padding:30px 34px;box-shadow:0 5px 18px rgba(35,56,99,.04)}h2{font-size:23px;margin:0 0 18px}h3{font-size:17px;margin:26px 0 10px}.lead{font-size:17px;color:#34405a}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.metric{border:1px solid var(--line);border-radius:16px;padding:18px;background:#fbfcfe}.metric strong{display:block;font-size:26px;line-height:1.1;margin:6px 0}.metric small{color:var(--muted)}.metric.red{background:var(--red2);border-color:#ffd5dc}.metric.blue{background:var(--blue2);border-color:#d5dfff}.metric.amber{background:var(--amber2);border-color:#f8df9d}.metric.green{background:var(--green2);border-color:#c7eedf}.callout{border-left:4px solid var(--blue);background:var(--blue2);padding:17px 19px;border-radius:4px 14px 14px 4px;margin:16px 0}.callout.warn{border-color:var(--amber);background:var(--amber2)}.callout.risk{border-color:var(--red);background:var(--red2)}.summary-list{margin:0;padding-left:21px}.summary-list li{margin:8px 0}table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 4px;font-size:14px}th{background:#f2f5fa;text-align:left;color:#49546a;font-weight:650}th,td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}th:first-child{border-radius:10px 0 0 0}th:last-child{border-radius:0 10px 0 0}.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}.tag{display:inline-block;border-radius:99px;padding:2px 8px;font-size:12px;font-weight:650}.tag.high{background:var(--red2);color:var(--red)}.tag.mid{background:var(--amber2);color:var(--amber)}.tag.good{background:var(--green2);color:var(--green)}.bars{margin-top:18px}.bar-row{display:grid;grid-template-columns:180px 1fr 84px;gap:12px;align-items:center;margin:12px 0}.track{height:12px;background:#edf0f5;border-radius:99px;overflow:hidden}.fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#6988ed,#3157d5)}.fill.red{background:linear-gradient(90deg,#ed8293,#c33c54)}.fill.amber{background:linear-gradient(90deg,#eebd59,#a96800)}.weight{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.weight>div{padding:18px;border-radius:15px;border:1px solid var(--line);background:#fbfcfe;text-align:center}.weight b{font-size:28px;display:block;color:var(--blue)}.formula{font:14px/1.6 ui-monospace,SFMono-Regular,Menlo,monospace;background:#172238;color:#eff4ff;padding:16px 18px;border-radius:12px;overflow:auto}.note{font-size:13px;color:var(--muted)}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.footer{text-align:center;color:var(--muted);font-size:12px;margin-top:24px}.toc a{color:var(--blue);text-decoration:none}.toc{columns:2;margin:0;padding-left:20px}@media(max-width:800px){.wrap{padding:14px 12px 44px}.hero{padding:32px 24px}.hero h1{font-size:28px}.section{padding:24px 18px}.grid,.weight,.two{grid-template-columns:1fr}.bar-row{grid-template-columns:120px 1fr 62px}.toc{columns:1}table{display:block;overflow-x:auto;white-space:nowrap}}
+  </style>
 </head>
-<body><main class="wrap">
-<header class="hero"><div class="eyebrow">Boloup · Payroll Operational Performance Review</div><h1>Payroll 订单全流程时效与瓶颈分析报告</h1><p>基于 2026 年 7–9 月订单事件，对七项核心指标的典型耗时、长尾分布、完成情况及事件质量进行统一评估，识别影响订单处理效率的主要环节，并为后续运营优化与数据治理提供依据。</p><div class="badges"><span class="badge">订单归属：首次收到订单月份</span><span class="badge">时间精度：10 分钟</span><span class="badge">9 月数据截至 9 月 28 日</span><span class="badge">未完结订单不计为 0</span></div></header>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <div class="kicker">Boloup · Payroll Operations Review</div>
+    <h1>Payroll 订单全流程时效、瓶颈与治理优先级分析</h1>
+    <p>识别订单时间浪费所在，比较国家与 Payroll 类型差异，并将长耗时、取消、超时和业务规模转化为可执行的治理资源权重。</p>
+    <div class="meta"><span>分析期：2026-07-01 至 2026-09-28</span><span>18,801 笔可关联订单</span><span>Asia/Shanghai</span><span>报告版本：2026-09-30</span></div>
+  </header>
 
-<section class="section"><h2>管理层摘要</h2><div class="grid g3">
-<article class="card insight"><span class="rank">01</span><h3>可观测主瓶颈：待确认</h3><div class="metric">130 分钟</div><div class="label">7–9 月 P50 均为 130 分钟</div><p>典型订单的端到端 P50 仅为 130–140 分钟，而待确认 P50 已达 130 分钟。就当前可观测链路而言，普通订单的大部分时间集中在支付后等待确认。</p></article>
-<article class="card danger"><span class="rank">02</span><h3>最大长尾：申诉</h3><div class="metric">5,140 分钟</div><div class="label">8 月申诉处理 P50，约 3.6 天</div><p>申诉订单数量少，但单笔拖延极长；8 月 P95 达 50,355 分钟，约 35 天。它不是最大流量瓶颈，却是最重的体验与运营风险。</p></article>
-<article class="card warn"><span class="rank">03</span><h3>恶化最快：审核及币商长尾</h3><div class="metric">1,820 分钟</div><div class="label">9月审核通过至币商结果 P95</div><p>审核处理P50从480升至990分钟；审核通过至币商结果P95从220升至1,820分钟。9月既有整体审核变慢，也有币商结果长尾扩大。</p></article>
-</div></section>
+  <section class="section">
+    <h2>阅读导航</h2>
+    <ol class="toc"><li><a href="#executive">管理层摘要</a></li><li><a href="#bottleneck">流程瓶颈</a></li><li><a href="#country">国家差异</a></li><li><a href="#payroll">Payroll 类型</a></li><li><a href="#weight">治理权重</a></li><li><a href="#actions">行动建议</a></li><li><a href="#method">口径与限制</a></li></ol>
+  </section>
 
-<section class="section"><h2>分析框架：七项核心指标</h2><div class="timeline" style="grid-template-columns:repeat(7,1fr)">
-<div class="step measured"><b>收单前后事件异常</b><small>pending_review 早于 received 的数量、比例及时间差</small></div>
-<div class="step measured"><b>审核处理</b><small>pending_review → 首次后续 review_result</small></div>
-<div class="step measured"><b>审核通过至币商结果</b><small>审核通过 → paid 或 expired；合并分配和币商处理</small></div>
-<div class="step measured"><b>待确认</b><small>支付或待确认 → 确认、申诉或取消</small></div>
-<div class="step measured"><b>申诉待处理</b><small>申诉 → 申诉处理完成</small></div>
-<div class="step measured"><b>端到端完成</b><small>收到订单 → 最终确认</small></div>
-<div class="step measured"><b>异常终止</b><small>收到订单 → 取消、超时或审核拒绝</small></div>
-</div></section>
+  <section class="section" id="executive">
+    <h2>一、管理层摘要</h2>
+    <div class="grid">
+      <div class="metric red"><small>日常首要瓶颈</small><strong>审核处理</strong><span>P90 17.0 小时</span></div>
+      <div class="metric amber"><small>9月审核 P90</small><strong>24.8 小时</strong><span>较7月增长约119%</span></div>
+      <div class="metric blue"><small>端到端完成 P90</small><strong>25.3 小时</strong><span>仅限观察期内完成订单</span></div>
+      <div class="metric green"><small>待确认 P90</small><strong>2.14 小时</strong><span>稳定，不是主要瓶颈</span></div>
+    </div>
+    <div class="callout risk"><strong>一句话结论：</strong>正常订单的时间主要浪费在审核；9月又出现审核后到币商结果的长尾放大。申诉耗时最长但样本少。治理上应以 <code>new_chat</code> 获取最大规模收益，以 <code>new_live</code> 解决最高单位风险。</div>
+    <ol class="summary-list">
+      <li><strong>审核处理持续恶化：</strong>P90 从7月11.3小时升至9月24.8小时，审核完成率同时从98.1%下降至94.8%。</li>
+      <li><strong>币商结果阶段成为第二瓶颈：</strong>审核结果至支付或超时的P90由7月1.35小时升至9月17.9小时，但9月仍受未完结影响。</li>
+      <li><strong>待确认不是主要矛盾：</strong>支付后至确认、申诉或取消的P90稳定在约2.14小时。</li>
+      <li><strong>国家差异集中于审核能力：</strong>Ethiopia、Bangladesh、Kenya最慢；Indonesia可作为高效对照组。</li>
+      <li><strong>类型治理分两条线：</strong><code>new_chat</code>解决规模问题，<code>new_live</code>解决慢和取消问题，<code>star_host</code>重点查分配后超时。</li>
+    </ol>
+  </section>
 
-<section class="section"><h2>统计口径：分位数指标说明</h2><p>P50、P75、P90 和 P95 是耗时<strong>分位数</strong>。将某项指标的有效订单按耗时从短到长排列，Px 表示约 x% 的订单耗时不超过该数值。相较平均值，分位数受极端慢单影响更小，并能直观呈现长尾程度。</p><div class="grid percentiles">
-<article class="card percentile"><div class="metric">P50</div><h3>典型订单体验</h3><p>又称中位数。50% 的已完成订单耗时不超过它，另外 50% 更慢。</p><div class="example">例：待确认 P50＝130 分钟，表示约一半订单在 130 分钟内完成待确认。</div></article>
-<article class="card percentile"><div class="metric">P75</div><h3>偏慢订单水平</h3><p>75% 的已完成订单耗时不超过它；最慢的 25% 会花费更长时间。</p><div class="example">适合观察普通订单之外的积压是否开始明显扩大。</div></article>
-<article class="card percentile"><div class="metric">P90</div><h3>长尾订单水平</h3><p>90% 的已完成订单耗时不超过它；剩余 10% 是明显偏慢的长尾订单。</p><div class="example">可作为较严格的运营 SLA 或长尾监控线。</div></article>
-<article class="card percentile"><div class="metric">P95</div><h3>严重长尾水平</h3><p>95% 的已完成订单耗时不超过它；最慢的 5% 比该数值还慢。</p><div class="example">P95 持续升高，通常说明少量订单出现严重积压或异常处理。</div></article>
-</div><div class="card warn" style="margin-top:14px"><strong>口径提醒：</strong>本报告分位数只使用已经观察到阶段结束时间的订单。未完成订单不会按 0 分钟参与计算，因此还应同时看“完成率”和“未完成订单数”。特别是申诉阶段，如果仍有大量未完成订单，已完成订单的 P95 仍可能低估真实积压。</div></section>
+  <section class="section" id="bottleneck">
+    <h2>二、时间卡在哪些流程</h2>
+    <p class="lead">瓶颈判断以 P90、P95 和阶段覆盖率为主，不以容易被极端值拉高的平均值作为唯一依据。</p>
+    <table><thead><tr><th>流程</th><th class="num">有效订单</th><th class="num">覆盖率</th><th class="num">P50</th><th class="num">P75</th><th class="num">P90</th><th class="num">P95</th><th>判断</th></tr></thead><tbody>
+      <tr><td><strong>审核处理</strong></td><td class="num">18,159</td><td class="num">96.6%</td><td class="num">0.00h</td><td class="num">1.17h</td><td class="num">17.00h</td><td class="num">25.00h</td><td><span class="tag high">第一瓶颈</span></td></tr>
+      <tr><td>审核结果至币商结果</td><td class="num">11,657</td><td class="num">62.0%</td><td class="num">0.55h</td><td class="num">0.95h</td><td class="num">4.23h</td><td class="num">12.53h</td><td><span class="tag mid">9月恶化</span></td></tr>
+      <tr><td>待用户确认</td><td class="num">11,274</td><td class="num">60.0%</td><td class="num">2.03h</td><td class="num">2.10h</td><td class="num">2.14h</td><td class="num">2.15h</td><td><span class="tag good">稳定</span></td></tr>
+      <tr><td>申诉处理</td><td class="num">30</td><td class="num">0.16%</td><td class="num">65.11h</td><td class="num">170.81h</td><td class="num">508.99h</td><td class="num">570.92h</td><td><span class="tag high">极长但低频</span></td></tr>
+      <tr><td>端到端正常完成</td><td class="num">11,266</td><td class="num">59.9%</td><td class="num">3.12h</td><td class="num">12.50h</td><td class="num">25.33h</td><td class="num">34.33h</td><td>受审核长尾主导</td></tr>
+      <tr><td>异常终止</td><td class="num">3,562</td><td class="num">18.9%</td><td class="num">0.80h</td><td class="num">5.33h</td><td class="num">18.17h</td><td class="num">24.08h</td><td>仅含取消与超时</td></tr>
+    </tbody></table>
+    <h3>审核处理月度趋势</h3>
+    <div class="bars">
+      <div class="bar-row"><span>7月 · 11.3h</span><div class="track"><div class="fill" style="width:45.6%"></div></div><strong class="num">P90</strong></div>
+      <div class="bar-row"><span>8月 · 15.3h</span><div class="track"><div class="fill amber" style="width:61.7%"></div></div><strong class="num">P90</strong></div>
+      <div class="bar-row"><span>9月 · 24.8h</span><div class="track"><div class="fill red" style="width:100%"></div></div><strong class="num">P90</strong></div>
+    </div>
+    <table><thead><tr><th>月份</th><th class="num">审核 P90</th><th class="num">审核 P95</th><th class="num">审核完成率</th><th class="num">端到端 P90*</th></tr></thead><tbody>
+      <tr><td>7月</td><td class="num">11.3h</td><td class="num">17.8h</td><td class="num">98.1%</td><td class="num">18.8h</td></tr>
+      <tr><td>8月</td><td class="num">15.3h</td><td class="num">22.0h</td><td class="num">97.3%</td><td class="num">25.0h</td></tr>
+      <tr><td>9月</td><td class="num"><strong>24.8h</strong></td><td class="num"><strong>37.7h</strong></td><td class="num">94.8%</td><td class="num">37.3h</td></tr>
+    </tbody></table>
+    <p class="note">* 端到端仅统计观察窗口内已确认完成订单。9月完成覆盖率只有35.2%，当前结果可能低估真实长尾。</p>
+  </section>
 
-<section class="section"><h2>七项指标月度 P50 对比</h2><div class="pill-switch"><button class="active" data-btn="07">7月</button><button data-btn="08">8月</button><button data-btn="09">9月</button></div>
-<div class="card chart active" data-month="07"><h3>2026 年 7 月 · P50（分钟，对数视觉压缩）</h3><div class="row"><span>事件异常时间差</span><div class="track"><div class="bar red" style="width:52%"></div></div><span class="num">590</span></div><div class="row"><span>审核处理</span><div class="track"><div class="bar orange" style="width:49%"></div></div><span class="num">480</span></div><div class="row"><span>审核至币商结果</span><div class="track"><div class="bar" style="width:16%"></div></div><span class="num">20</span></div><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:92%"></div></div><span class="num">7,070</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:20%"></div></div><span class="num">30</span></div></div>
-<div class="card chart" data-month="08"><h3>2026 年 8 月 · P50（分钟，对数视觉压缩）</h3><div class="row"><span>事件异常时间差</span><div class="track"><div class="bar red" style="width:56%"></div></div><span class="num">680</span></div><div class="row"><span>审核处理</span><div class="track"><div class="bar orange" style="width:50%"></div></div><span class="num">510</span></div><div class="row"><span>审核至币商结果</span><div class="track"><div class="bar" style="width:20%"></div></div><span class="num">30</span></div><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:88%"></div></div><span class="num">5,140</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:34%"></div></div><span class="num">140</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:22%"></div></div><span class="num">40</span></div></div>
-<div class="card chart" data-month="09"><h3>2026 年 9 月 · P50（分钟，对数视觉压缩）</h3><div class="row"><span>事件异常时间差</span><div class="track"><div class="bar red" style="width:66%"></div></div><span class="num">1,320</span></div><div class="row"><span>审核处理</span><div class="track"><div class="bar orange" style="width:62%"></div></div><span class="num">990</span></div><div class="row"><span>审核至币商结果</span><div class="track"><div class="bar" style="width:22%"></div></div><span class="num">40</span></div><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:82%"></div></div><span class="num">3,020</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:12%"></div></div><span class="num">10</span></div></div>
-<p class="notes">申诉与普通阶段相差数十倍，图条采用对数视觉压缩；右侧为真实分钟数。“事件异常时间差”不是业务处理耗时，只用于衡量 pending_review 早于 received 的幅度。</p></section>
+  <section class="section" id="country">
+    <h2>三、不同国家的 Payroll 订单时效</h2>
+    <div class="callout"><strong>国家结论：</strong>Ethiopia、Bangladesh主要卡在审核；Kenya同时卡在审核与币商处理；Nepal与India兼有取消风险；Indonesia时效最好，可用于流程对照。</div>
+    <table><thead><tr><th>国家</th><th class="num">订单数</th><th class="num">审核P90</th><th class="num">端到端P90*</th><th class="num">取消率</th><th>主要问题</th></tr></thead><tbody>
+      <tr><td>Ethiopia</td><td class="num">275</td><td class="num"><strong>50.9h</strong></td><td class="num">55.6h</td><td class="num">1.82%</td><td><span class="tag high">审核最慢</span></td></tr>
+      <tr><td>Bangladesh</td><td class="num">417</td><td class="num">33.8h</td><td class="num">39.1h</td><td class="num">0.48%</td><td>审核严重积压</td></tr>
+      <tr><td>Kenya</td><td class="num">522</td><td class="num">25.4h</td><td class="num">35.7h</td><td class="num">0.96%</td><td>审核、币商双瓶颈</td></tr>
+      <tr><td>Pakistan</td><td class="num">178</td><td class="num">23.7h</td><td class="num">35.2h</td><td class="num">1.12%</td><td>币商处理长尾</td></tr>
+      <tr><td>India</td><td class="num">982</td><td class="num">21.9h</td><td class="num">32.0h</td><td class="num">4.38%</td><td>审核慢、取消偏高</td></tr>
+      <tr><td>UAE</td><td class="num">138</td><td class="num">17.7h</td><td class="num">27.0h</td><td class="num"><strong>6.52%</strong></td><td><span class="tag high">取消最高</span></td></tr>
+      <tr><td>Nepal</td><td class="num">4,520</td><td class="num">19.0h</td><td class="num">22.5h</td><td class="num">4.20%</td><td>量大、取消与超时</td></tr>
+      <tr><td>Nigeria</td><td class="num">4,834</td><td class="num">14.2h</td><td class="num">23.9h</td><td class="num">0.64%</td><td>规模收益优先</td></tr>
+      <tr><td>Philippines</td><td class="num">2,301</td><td class="num">10.2h</td><td class="num">25.6h</td><td class="num">1.74%</td><td>币商处理更突出</td></tr>
+      <tr><td>Indonesia</td><td class="num">2,484</td><td class="num">1.8h</td><td class="num">6.5h</td><td class="num">3.74%</td><td><span class="tag good">时效对照组</span></td></tr>
+    </tbody></table>
+    <p class="note">* 国家端到端指标同样受到9月订单未完全成熟的影响。UAE、Pakistan等小样本国家应结合后续月份复核。</p>
+  </section>
 
-<section class="section"><h2>七项指标月度统计明细</h2><div class="table-wrap"><table><thead><tr><th>指标 / 月份</th><th>样本数</th><th>结果数</th><th>结果率</th><th>平均</th><th>P50</th><th>P75</th><th>P90</th><th>P95</th><th>最大值</th></tr></thead><tbody>
-<tr><td>收单前后事件异常 · 7月</td><td>1,228</td><td>1,224</td><td>99.7%</td><td>642.7</td><td>590</td><td>990</td><td>1,290</td><td>1,438.5</td><td>3,650</td></tr>
-<tr><td>收单前后事件异常 · 8月</td><td>1,414</td><td>1,411</td><td>99.8%</td><td>822.5</td><td>680</td><td>1,190</td><td>1,580</td><td>2,115</td><td>4,680</td></tr>
-<tr><td>收单前后事件异常 · 9月</td><td>1,490</td><td>1,482</td><td>99.5%</td><td>1,401.2</td><td>1,320</td><td>2,000</td><td>2,728</td><td>3,119.5</td><td>6,220</td></tr>
-<tr><td>审核处理 · 7月</td><td>1,228</td><td>1,226</td><td>99.8%</td><td>574.0</td><td>480</td><td>900</td><td>1,215</td><td>1,377.5</td><td>3,650</td></tr>
-<tr><td>审核处理 · 8月</td><td>1,414</td><td>1,413</td><td>99.9%</td><td>724.7</td><td>510</td><td>1,040</td><td>1,440</td><td>1,894</td><td>4,640</td></tr>
-<tr><td>审核处理 · 9月</td><td>1,490</td><td>1,490</td><td>100.0%</td><td>1,205.1</td><td>990</td><td>1,767.5</td><td>2,691</td><td>3,105.5</td><td>6,220</td></tr>
-<tr><td>审核通过至币商结果 · 7月</td><td>5,114</td><td>5,033</td><td>98.4%</td><td>47.9</td><td>20</td><td>40</td><td>70</td><td>220</td><td>2,640</td></tr>
-<tr><td>审核通过至币商结果 · 8月</td><td>5,385</td><td>5,290</td><td>98.2%</td><td>119.4</td><td>30</td><td>60</td><td>210</td><td>750</td><td>2,410</td></tr>
-<tr><td>审核通过至币商结果 · 9月</td><td>5,097</td><td>4,926</td><td>96.6%</td><td>387.9</td><td>40</td><td>470</td><td>1,450</td><td>1,820</td><td>9,100</td></tr>
-<tr><td>待确认 · 7月</td><td>5,359</td><td>5,359</td><td>100.0%</td><td>87.7</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
-<tr><td>待确认 · 8月</td><td>6,898</td><td>6,898</td><td>100.0%</td><td>96.6</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
-<tr><td>待确认 · 9月</td><td>6,406</td><td>6,392</td><td>99.8%</td><td>95.0</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
-<tr><td>申诉待处理 · 7月</td><td>18</td><td>5</td><td>27.8%</td><td>7,368</td><td>7,070</td><td>8,620</td><td>14,656</td><td>16,668</td><td>18,680</td></tr>
-<tr><td>申诉待处理 · 8月</td><td>29</td><td>11</td><td>37.9%</td><td>17,356</td><td>5,140</td><td>31,970</td><td>34,670</td><td>50,355</td><td>66,040</td></tr>
-<tr><td>申诉待处理 · 9月</td><td>28</td><td>15</td><td>53.6%</td><td>3,898</td><td>3,020</td><td>5,065</td><td>9,106</td><td>11,792</td><td>14,130</td></tr>
-<tr><td>端到端完成 · 7月</td><td>5,518</td><td>5,356</td><td>97.1%</td><td>223.2</td><td>130</td><td>170</td><td>440</td><td>820</td><td>13,670</td></tr>
-<tr><td>端到端完成 · 8月</td><td>7,067</td><td>6,893</td><td>97.5%</td><td>254.4</td><td>140</td><td>210</td><td>630</td><td>1,020</td><td>11,970</td></tr>
-<tr><td>端到端完成 · 9月</td><td>6,605</td><td>6,388</td><td>96.7%</td><td>207.3</td><td>130</td><td>142.5</td><td>250</td><td>520</td><td>9,100</td></tr>
-<tr><td>异常终止 · 7月</td><td>5,518</td><td>1,783</td><td>32.3%</td><td>46.1</td><td>30</td><td>40</td><td>40</td><td>40</td><td>18,850</td></tr>
-<tr><td>异常终止 · 8月</td><td>7,067</td><td>2,456</td><td>34.8%</td><td>46.9</td><td>40</td><td>60</td><td>70</td><td>70</td><td>790</td></tr>
-<tr><td>异常终止 · 9月</td><td>6,605</td><td>190</td><td>2.9%</td><td>182.1</td><td>10</td><td>70</td><td>252</td><td>596</td><td>7,920</td></tr>
-</tbody></table></div><p class="notes">单位均为分钟。前三行的“结果数/结果率”表示顺序倒置数量与倒置率，耗时列表示 received 晚于 pending_review 的时间差，并非业务处理时长；其余指标表示完成数量与完成率。“异常终止结果率”是观察到异常终止的比例，并非业务成功率。9月截至9月28日。</p></section>
+  <section class="section" id="payroll">
+    <h2>四、不同 Payroll 类型表现</h2>
+    <table><thead><tr><th>Payroll类型</th><th class="num">订单数</th><th class="num">占比</th><th class="num">审核P90</th><th class="num">端到端P90*</th><th class="num">取消率</th><th class="num">7–8月超时率</th></tr></thead><tbody>
+      <tr><td><code>new_chat</code></td><td class="num">17,623</td><td class="num">93.7%</td><td class="num">17.5h</td><td class="num">25.8h</td><td class="num">2.45%</td><td class="num">28.61%</td></tr>
+      <tr><td><code>talent_host</code></td><td class="num">687</td><td class="num">3.65%</td><td class="num">0h</td><td class="num">6.3h</td><td class="num">0.87%</td><td class="num">12.03%</td></tr>
+      <tr><td><code>new_live</code></td><td class="num">204</td><td class="num">1.09%</td><td class="num"><strong>22.5h</strong></td><td class="num">25.7h</td><td class="num"><strong>5.39%</strong></td><td class="num">20.44%</td></tr>
+      <tr><td><code>star_host</code></td><td class="num">188</td><td class="num">1.00%</td><td class="num">0h</td><td class="num">17.6h</td><td class="num">1.06%</td><td class="num"><strong>28.78%</strong></td></tr>
+    </tbody></table>
+    <div class="two">
+      <div class="callout"><strong>规模问题｜new_chat</strong><br>占全部订单93.7%。即使每笔只减少少量等待，也能产生最大的总体收益。</div>
+      <div class="callout risk"><strong>单位风险｜new_live</strong><br>审核P90最长、取消率最高，应优先检查资料质量、人工审核队列与规则命中。</div>
+      <div class="callout warn"><strong>下游问题｜star_host</strong><br>审核近实时，但超时偏高，治理重点应放在分配与币商履约，不应继续优化审核。</div>
+      <div class="callout"><strong>最佳实践｜talent_host</strong><br>审核、取消、超时均表现最好，适合提炼其资料要求和自动审核规则并复制。</div>
+    </div>
+  </section>
 
-<section class="section"><h2>核心时效瓶颈解读</h2><div class="grid g2">
-<article class="card"><h3>高频、稳定的时间占用</h3><p class="callout"><strong>待确认是最明确的普遍耗时点。</strong>三个月 P50 固定为 130 分钟，且进入订单量约 5,359–6,898。它影响大多数订单，优先级高于低频分支。</p><p>其均值仅为 87.7–96.6 分钟却低于 P50，说明分布可能受到时间桶、批量确认或部分非常快的订单影响。130 分钟的高度集中值得检查是否存在固定轮询、定时任务或统一超时机制。</p></article>
-<article class="card"><h3>低频、高损失的异常占用</h3><p class="callout"><strong>申诉是长尾风险，而非主流订单瓶颈。</strong>样本仅 18–29 单/月，但等待可达数天乃至数周。</p><p>8 月 P75 31,970 分钟、P95 50,355 分钟，表明少量积压严重拉高均值。应使用案件年龄、负责人和 SLA 分层治理，而不是只看整体平均。</p></article>
-</div></section>
+  <section class="section" id="weight">
+    <h2>五、Payroll 治理资源权重方案</h2>
+    <p class="lead">该权重用于分配问题排查、人工支持与流程改造资源，不是将更多订单分给表现较差的 Payroll。</p>
+    <div class="formula">治理分数 = 45% × 时长风险 + 25% × 取消风险 + 15% × 超时风险 + 15% × 订单规模</div>
+    <p>超时风险只使用已获得充分观察时间的7–8月订单；小样本类型进行可信度折减，并为每类保留最低5%的基础监控资源。</p>
+    <div class="weight">
+      <div><small>new_chat</small><b>49%</b><span>规模与审核积压</span></div>
+      <div><small>new_live</small><b>35%</b><span>慢审核与取消</span></div>
+      <div><small>star_host</small><b>11%</b><span>分配后超时</span></div>
+      <div><small>talent_host</small><b>5%</b><span>监控与最佳实践</span></div>
+    </div>
+    <table><thead><tr><th>Payroll类型</th><th class="num">治理权重</th><th>资源使用建议</th><th>预期价值</th></tr></thead><tbody>
+      <tr><td><code>new_chat</code></td><td class="num"><strong>49%</strong></td><td>审核队列、批量规则、币商容量</td><td>最大绝对订单收益</td></tr>
+      <tr><td><code>new_live</code></td><td class="num"><strong>35%</strong></td><td>资料错误、人工审核、取消根因</td><td>降低最高单位风险</td></tr>
+      <tr><td><code>star_host</code></td><td class="num">11%</td><td>分配后超时、币商履约</td><td>避免优化错误环节</td></tr>
+      <tr><td><code>talent_host</code></td><td class="num">5%</td><td>维持监控、复制有效规则</td><td>形成流程基准</td></tr>
+    </tbody></table>
+    <div class="callout warn"><strong>使用边界：</strong>该权重不能直接用于绩效扣分或商业流量分配。建议用于2–4周治理资源排期，随后以新数据重新计算。</div>
+  </section>
 
-<section class="section"><h2>七项指标综合分析</h2><p>七项指标采用统一的月度归属和分位数口径。前三项为调整后的分析指标：事件异常时间差用于评估数据顺序问题，不代表业务处理时长；审核通过至币商结果为等待分配与币商处理的合并区间。</p>
-<div class="grid g3">
-<article class="card danger"><span class="rank">①</span><h3>收单前后事件异常</h3><div class="metric">99.5%+</div><div class="label">有 pending_review 订单的顺序倒置率</div><p>三个自然月均超过 99.5%。9月倒置领先时间 P50 达 1,320 分钟，即 pending_review 通常比 received 早约22小时。</p></article>
-<article class="card warn"><span class="rank">②</span><h3>审核处理耗时</h3><div class="metric">990 分钟</div><div class="label">9月 P50，约16.5小时</div><p>按 pending_review 至后续首个 review_result 计算。P50由7月480分钟上升到9月990分钟，说明该事件区间整体变慢。</p></article>
-<article class="card insight"><span class="rank">③</span><h3>审核通过至币商结果</h3><div class="metric">1,820 分钟</div><div class="label">9月 P95，约30.3小时</div><p>合并等待分配和币商处理。典型订单P50只有40分钟，但最慢5%的耗时急剧扩大。</p></article>
-</div>
+  <section class="section" id="actions">
+    <h2>六、建议的执行顺序</h2>
+    <ol class="summary-list">
+      <li><strong>建立审核 SLA：</strong>按4小时、12小时、24小时监控完成率，同时追踪在途订单年龄、P90与P95。</li>
+      <li><strong>优先清理审核积压：</strong>国家聚焦 Ethiopia、Bangladesh、Kenya、India、Nepal；类型聚焦 <code>new_chat</code> 与 <code>new_live</code>。</li>
+      <li><strong>单独治理币商阶段：</strong>重点检查 Kenya、Pakistan、Philippines，以及 <code>star_host</code> 的分配后超时。</li>
+      <li><strong>拆解“资料错误”：</strong>增加收款资料、身份匹配、国家/币种支持、重复提交、CMS取消等二级原因。</li>
+      <li><strong>建立申诉工单 SLA：</strong>申诉P50已超过65小时，不应继续与普通订单共用同一时效目标。</li>
+      <li><strong>两至四周后复算：</strong>使用相同口径验证审核P90、取消率与7–8月式成熟订单超时率是否下降。</li>
+    </ol>
+  </section>
 
-<div class="card insight" style="margin-top:16px"><h3>七项合并后的判断</h3><p><strong>普通订单的主要稳定耗时仍是待确认：</strong>P50连续三个月为130分钟。</p><p><strong>审核区间出现整体性恶化：</strong>审核处理P50从480升至990分钟，影响的不只是极少数慢单。</p><p><strong>审核通过后的风险集中在长尾：</strong>P50仅20→30→40分钟，但P95从220升至750、1,820分钟。</p><p><strong>申诉仍是耗时最长的分支：</strong>虽然样本量小，但P50以天计，必须单独设置案件年龄SLA。</p></div></section>
-
-<section class="section"><h2>优化建议与实施优先级</h2><div class="grid g3">
-<article class="card"><span class="rank">A</span><h3>治理审核与币商处理长尾</h3><p>优先按币商、支付方式、订单金额和发生时段拆分9月慢单，分别定位审核P50上升和币商结果P95扩大的驱动因素，并对超过P90的订单建立逐单复盘机制。</p></article>
-<article class="card"><span class="rank">B</span><h3>优化待确认与申诉SLA</h3><p>核查待确认阶段是否存在固定轮询或批处理机制；针对申诉设置24小时、72小时和7天案件年龄分层，结合未完成数量管理积压，而非仅观察已完成案件均值。</p></article>
-<article class="card"><span class="rank">C</span><h3>完善事件链与状态治理</h3><p>确认真实收单、审核开始和首次分配的事件定义，统一同一 <code>order_id</code> 的上报时钟与状态语义。补齐可靠分配时间后，再将合并阶段拆解为等待分配和币商处理。</p></article>
-</div></section>
-
-<section class="section"><div class="card"><h2>口径与结论边界</h2><p>本报告可以确认：<strong>待确认是覆盖面最大的稳定耗时环节，申诉是耗时最长的低频分支；9月审核处理整体变慢，审核通过至币商结果的长尾亦显著扩大。</strong></p><p>事件异常时间差不属于业务处理耗时；审核通过至币商结果为合并指标，不能进一步判断时间发生在等待分配还是币商处理。9月仅统计至9月28日，属于未完整月份；在途订单按右删失处理。时间采用10分钟桶，单笔耗时误差上限约10分钟。</p></div></section>
-<footer class="footer">数据来源：Boloup 数数事件分析；分析范围：2026-07-01 至 2026-09-28。生成日期：2026-09-30。</footer>
-</main><script>document.querySelectorAll('[data-btn]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-btn]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('[data-month]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector('[data-month="'+b.dataset.btn+'"]').classList.add('active')})</script></body></html>
+  <section class="section" id="method">
+    <h2>七、计算口径、百分位与证据限制</h2>
+    <h3>核心口径</h3>
+    <table><thead><tr><th>项目</th><th>定义</th></tr></thead><tbody>
+      <tr><td>订单范围</td><td><code>init_withdraw.withdrawal_path = payroll</code></td></tr>
+      <tr><td>订单归属</td><td>以发起提现时间归属7月、8月、9月</td></tr>
+      <tr><td>审核处理</td><td>首次后续 <code>payroll_review_result</code> − <code>init_withdraw</code>；早于发起提现时按0处理</td></tr>
+      <tr><td>国家</td><td>发起提现时的 <code>choose_country</code> 快照</td></tr>
+      <tr><td>Payroll类型</td><td>发起提现时的 <code>salary_mode</code> 快照</td></tr>
+      <tr><td>订单关联</td><td>使用精确原始 <code>order_id</code></td></tr>
+    </tbody></table>
+    <h3>百分位解释</h3>
+    <table><thead><tr><th>指标</th><th>业务解释</th></tr></thead><tbody>
+      <tr><td>P50</td><td>50%的已完成订单不超过该时长，代表典型体验。</td></tr>
+      <tr><td>P75</td><td>75%的订单不超过该时长，用于观察开始变慢的订单。</td></tr>
+      <tr><td>P90</td><td>90%的订单不超过该时长，是本报告判断长尾瓶颈的核心指标。</td></tr>
+      <tr><td>P95</td><td>95%的订单不超过该时长，用于识别严重积压和极慢订单。</td></tr>
+    </tbody></table>
+    <h3>数据质量与限制</h3>
+    <ul class="summary-list">
+      <li>审核时间来自10分钟粒度事件桶；0分钟代表同一时间桶，是“自动审核或近实时审核候选”，不等于全部已证明为自动审核。</li>
+      <li>审核结果精确明细的全量查询超时；“审核结果至币商结果”使用首次审核结果，并只保留后续确实出现支付或超时的订单。</li>
+      <li>异常终止仅包含取消与超时，未完整包含审核拒绝。</li>
+      <li>9月只观察至9月28日，端到端完成率和超时率存在右删失；因此权重中的超时风险使用7–8月。</li>
+      <li>共取得522条取消事件、4,057条超时事件；关联去重后分别覆盖451笔取消订单和3,226笔超时订单。</li>
+      <li>已完成申诉配对仅30笔，申诉分布只能用于风险提示，不宜用于细分绩效评价。</li>
+    </ul>
+  </section>
+  <div class="footer">数据来源：Boloup 数数分析 · 只读查询｜本报告为运营治理分析，不构成绩效或商业分配规则</div>
+</main>
+</body>
+</html>
