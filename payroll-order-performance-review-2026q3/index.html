@@ -20,7 +20,7 @@
 
   <section class="section">
     <h2>阅读导航</h2>
-    <ol class="toc"><li><a href="#executive">管理层摘要</a></li><li><a href="#bottleneck">流程瓶颈</a></li><li><a href="#country">国家差异</a></li><li><a href="#payroll">Payroll 类型</a></li><li><a href="#weight">治理权重</a></li><li><a href="#actions">行动建议</a></li><li><a href="#method">口径与限制</a></li></ol>
+    <ol class="toc"><li><a href="#executive">管理层摘要</a></li><li><a href="#bottleneck">流程瓶颈</a></li><li><a href="#country">国家差异</a></li><li><a href="#payroll">Payroll 类型</a></li><li><a href="#weight">治理权重</a></li><li><a href="#legacy-seven">七阶段历史明细</a></li><li><a href="#actions">行动建议</a></li><li><a href="#method">口径与限制</a></li></ol>
   </section>
 
   <section class="section" id="executive">
@@ -120,8 +120,49 @@
     <div class="callout warn"><strong>使用边界：</strong>该权重不能直接用于绩效扣分或商业流量分配。建议用于2–4周治理资源排期，随后以新数据重新计算。</div>
   </section>
 
+  <section class="section" id="legacy-seven">
+    <h2>六、七个阶段的历史定义与月度具体数据</h2>
+    <div class="callout warn"><strong>为什么保留：</strong>以下内容完整保留上一版报告的七阶段定义和统计，便于追溯历史判断。它不是本次修正口径的替代：其中“审核处理”旧口径为 <code>pending_review → review_result</code>；本报告正式口径已修正为 <code>init_withdraw → 首次后续 review_result</code>，正式结论应以新版口径为准。</div>
+    <h3>七阶段历史定义</h3>
+    <table><thead><tr><th>阶段</th><th>历史开始点</th><th>历史结束点</th><th>解释边界</th></tr></thead><tbody>
+      <tr><td>收单前后事件异常</td><td><code>payroll_pending_review</code></td><td><code>payroll_order_received</code></td><td>统计 pending_review 早于 received 的倒置数量、比例和时间差；不是业务处理耗时。</td></tr>
+      <tr><td>审核处理</td><td><code>payroll_pending_review</code></td><td>首次后续 <code>payroll_review_result</code></td><td>旧版历史口径；新版已改为发起提现至首次后续审核结果。</td></tr>
+      <tr><td>审核通过至币商结果</td><td>首次审核通过</td><td><code>payroll_order_paid</code> 或 <code>payroll_order_expired</code></td><td>合并等待分配与币商处理，无法拆开两段。</td></tr>
+      <tr><td>待确认</td><td>币商支付或进入待确认</td><td>用户确认、发起申诉或取消</td><td>反映支付后等待用户侧结果的时间。</td></tr>
+      <tr><td>申诉待处理</td><td><code>payroll_order_appeal</code></td><td><code>payroll_order_appeal_complete</code></td><td>只对观察到申诉完成的订单计算时长。</td></tr>
+      <tr><td>端到端完成</td><td><code>payroll_order_received</code></td><td>最终确认或正常完成</td><td>旧版使用收到订单作为起点；新版正式分析使用发起提现。</td></tr>
+      <tr><td>异常终止</td><td><code>payroll_order_received</code></td><td>取消、超时或审核拒绝</td><td>结果率表示观察到异常终止的比例，不是业务成功率。</td></tr>
+    </tbody></table>
+    <h3>七阶段历史月度统计</h3>
+    <p class="note">单位均为分钟。未观察到阶段结束的订单不按0分钟参与分位数计算。9月数据截至9月28日。</p>
+    <table><thead><tr><th>阶段 / 月份</th><th class="num">样本数</th><th class="num">结果数</th><th class="num">结果率</th><th class="num">平均</th><th class="num">P50</th><th class="num">P75</th><th class="num">P90</th><th class="num">P95</th><th class="num">最大</th></tr></thead><tbody>
+      <tr><td>收单前后事件异常 · 7月</td><td class="num">1,228</td><td class="num">1,224</td><td class="num">99.7%</td><td class="num">642.7</td><td class="num">590</td><td class="num">990</td><td class="num">1,290</td><td class="num">1,438.5</td><td class="num">3,650</td></tr>
+      <tr><td>收单前后事件异常 · 8月</td><td class="num">1,414</td><td class="num">1,411</td><td class="num">99.8%</td><td class="num">822.5</td><td class="num">680</td><td class="num">1,190</td><td class="num">1,580</td><td class="num">2,115</td><td class="num">4,680</td></tr>
+      <tr><td>收单前后事件异常 · 9月</td><td class="num">1,490</td><td class="num">1,482</td><td class="num">99.5%</td><td class="num">1,401.2</td><td class="num">1,320</td><td class="num">2,000</td><td class="num">2,728</td><td class="num">3,119.5</td><td class="num">6,220</td></tr>
+      <tr><td>审核处理（旧口径） · 7月</td><td class="num">1,228</td><td class="num">1,226</td><td class="num">99.8%</td><td class="num">574.0</td><td class="num">480</td><td class="num">900</td><td class="num">1,215</td><td class="num">1,377.5</td><td class="num">3,650</td></tr>
+      <tr><td>审核处理（旧口径） · 8月</td><td class="num">1,414</td><td class="num">1,413</td><td class="num">99.9%</td><td class="num">724.7</td><td class="num">510</td><td class="num">1,040</td><td class="num">1,440</td><td class="num">1,894</td><td class="num">4,640</td></tr>
+      <tr><td>审核处理（旧口径） · 9月</td><td class="num">1,490</td><td class="num">1,490</td><td class="num">100.0%</td><td class="num">1,205.1</td><td class="num">990</td><td class="num">1,767.5</td><td class="num">2,691</td><td class="num">3,105.5</td><td class="num">6,220</td></tr>
+      <tr><td>审核通过至币商结果 · 7月</td><td class="num">5,114</td><td class="num">5,033</td><td class="num">98.4%</td><td class="num">47.9</td><td class="num">20</td><td class="num">40</td><td class="num">70</td><td class="num">220</td><td class="num">2,640</td></tr>
+      <tr><td>审核通过至币商结果 · 8月</td><td class="num">5,385</td><td class="num">5,290</td><td class="num">98.2%</td><td class="num">119.4</td><td class="num">30</td><td class="num">60</td><td class="num">210</td><td class="num">750</td><td class="num">2,410</td></tr>
+      <tr><td>审核通过至币商结果 · 9月</td><td class="num">5,097</td><td class="num">4,926</td><td class="num">96.6%</td><td class="num">387.9</td><td class="num">40</td><td class="num">470</td><td class="num">1,450</td><td class="num">1,820</td><td class="num">9,100</td></tr>
+      <tr><td>待确认 · 7月</td><td class="num">5,359</td><td class="num">5,359</td><td class="num">100.0%</td><td class="num">87.7</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td></tr>
+      <tr><td>待确认 · 8月</td><td class="num">6,898</td><td class="num">6,898</td><td class="num">100.0%</td><td class="num">96.6</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td></tr>
+      <tr><td>待确认 · 9月</td><td class="num">6,406</td><td class="num">6,392</td><td class="num">99.8%</td><td class="num">95.0</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td><td class="num">130</td></tr>
+      <tr><td>申诉待处理 · 7月</td><td class="num">18</td><td class="num">5</td><td class="num">27.8%</td><td class="num">7,368</td><td class="num">7,070</td><td class="num">8,620</td><td class="num">14,656</td><td class="num">16,668</td><td class="num">18,680</td></tr>
+      <tr><td>申诉待处理 · 8月</td><td class="num">29</td><td class="num">11</td><td class="num">37.9%</td><td class="num">17,356</td><td class="num">5,140</td><td class="num">31,970</td><td class="num">34,670</td><td class="num">50,355</td><td class="num">66,040</td></tr>
+      <tr><td>申诉待处理 · 9月</td><td class="num">28</td><td class="num">15</td><td class="num">53.6%</td><td class="num">3,898</td><td class="num">3,020</td><td class="num">5,065</td><td class="num">9,106</td><td class="num">11,792</td><td class="num">14,130</td></tr>
+      <tr><td>端到端完成（旧起点） · 7月</td><td class="num">5,518</td><td class="num">5,356</td><td class="num">97.1%</td><td class="num">223.2</td><td class="num">130</td><td class="num">170</td><td class="num">440</td><td class="num">820</td><td class="num">13,670</td></tr>
+      <tr><td>端到端完成（旧起点） · 8月</td><td class="num">7,067</td><td class="num">6,893</td><td class="num">97.5%</td><td class="num">254.4</td><td class="num">140</td><td class="num">210</td><td class="num">630</td><td class="num">1,020</td><td class="num">11,970</td></tr>
+      <tr><td>端到端完成（旧起点） · 9月</td><td class="num">6,605</td><td class="num">6,388</td><td class="num">96.7%</td><td class="num">207.3</td><td class="num">130</td><td class="num">142.5</td><td class="num">250</td><td class="num">520</td><td class="num">9,100</td></tr>
+      <tr><td>异常终止（旧起点） · 7月</td><td class="num">5,518</td><td class="num">1,783</td><td class="num">32.3%</td><td class="num">46.1</td><td class="num">30</td><td class="num">40</td><td class="num">40</td><td class="num">40</td><td class="num">18,850</td></tr>
+      <tr><td>异常终止（旧起点） · 8月</td><td class="num">7,067</td><td class="num">2,456</td><td class="num">34.8%</td><td class="num">46.9</td><td class="num">40</td><td class="num">60</td><td class="num">70</td><td class="num">70</td><td class="num">790</td></tr>
+      <tr><td>异常终止（旧起点） · 9月</td><td class="num">6,605</td><td class="num">190</td><td class="num">2.9%</td><td class="num">182.1</td><td class="num">10</td><td class="num">70</td><td class="num">252</td><td class="num">596</td><td class="num">7,920</td></tr>
+    </tbody></table>
+    <div class="callout"><strong>解读规则：</strong>这张历史表用于复现上一版七阶段分析。其中收单异常是事件质量指标；审核处理与端到端的起点已被本次分析纠正，因此不能直接与新版表格做环比或加总。审核通过至币商结果、待确认、申诉等数据仍可作为历史阶段证据保留。</div>
+  </section>
+
   <section class="section" id="actions">
-    <h2>六、建议的执行顺序</h2>
+    <h2>七、建议的执行顺序</h2>
     <ol class="summary-list">
       <li><strong>建立审核 SLA：</strong>按4小时、12小时、24小时监控完成率，同时追踪在途订单年龄、P90与P95。</li>
       <li><strong>优先清理审核积压：</strong>国家聚焦 Ethiopia、Bangladesh、Kenya、India、Nepal；类型聚焦 <code>new_chat</code> 与 <code>new_live</code>。</li>
@@ -133,7 +174,7 @@
   </section>
 
   <section class="section" id="method">
-    <h2>七、计算口径、百分位与证据限制</h2>
+    <h2>八、计算口径、百分位与证据限制</h2>
     <h3>核心口径</h3>
     <table><thead><tr><th>项目</th><th>定义</th></tr></thead><tbody>
       <tr><td>订单范围</td><td><code>init_withdraw.withdrawal_path = payroll</code></td></tr>
