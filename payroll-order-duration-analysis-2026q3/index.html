@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Payroll 订单耗时分布与阶段浪费分析｜2026年7–9月</title>
+<style>
+:root{--ink:#172033;--muted:#667085;--blue:#2457d6;--cyan:#18a0ae;--orange:#ef8b32;--red:#d64b4b;--green:#16876c;--bg:#f4f7fb;--card:#fff;--line:#e4e9f2;--soft:#edf3ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.wrap{max-width:1180px;margin:auto;padding:36px 24px 72px}.hero{background:linear-gradient(130deg,#122955,#2457d6 62%,#18a0ae);color:#fff;border-radius:22px;padding:38px 42px;box-shadow:0 18px 46px #1d3e8529}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.75}.hero h1{font-size:34px;line-height:1.22;margin:10px 0 12px}.hero p{max-width:840px;margin:0;opacity:.9;font-size:16px}.badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}.badge{background:#ffffff1c;border:1px solid #ffffff38;border-radius:99px;padding:6px 12px}.section{margin-top:34px}.section h2{font-size:23px;margin:0 0 14px}.section h3{font-size:17px;margin:0 0 8px}.grid{display:grid;gap:16px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:21px;box-shadow:0 6px 18px #26375c0a}.metric{font-size:30px;font-weight:750;line-height:1.1}.label{color:var(--muted);margin-top:5px}.delta{display:inline-block;margin-top:10px;border-radius:99px;padding:4px 9px;background:#e8f7f2;color:var(--green);font-size:12px}.warn{background:#fff5e8;border-left:4px solid var(--orange)}.danger{background:#fff0f0;border-left:4px solid var(--red)}.insight{background:#eef4ff;border-left:4px solid var(--blue)}.chart{padding:22px}.row{display:grid;grid-template-columns:116px 1fr 92px;align-items:center;gap:12px;margin:12px 0}.track{height:12px;background:#edf0f5;border-radius:99px;overflow:hidden}.bar{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),#6a8ff4)}.bar.orange{background:linear-gradient(90deg,#ef8b32,#f7bd62)}.bar.red{background:linear-gradient(90deg,#d64b4b,#f38b8b)}.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:650}table{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden}th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}th{background:#edf3ff;color:#28406d;font-size:12px}th:first-child,td:first-child{text-align:left;font-weight:650}tr:last-child td{border-bottom:0}.status{display:inline-block;padding:3px 8px;border-radius:99px;font-size:12px;font-weight:650}.ok{background:#e8f7f2;color:#14715d}.blocked{background:#fff0e8;color:#a64e14}.timeline{display:grid;grid-template-columns:repeat(8,1fr);gap:7px}.step{min-height:118px;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px}.step b{display:block;font-size:13px}.step small{display:block;color:var(--muted);margin-top:7px}.step.measured{border-top:4px solid var(--blue)}.step.unknown{border-top:4px solid var(--orange);background:#fffaf3}.rank{font-size:24px;font-weight:800;color:#c8d3e8;float:right}.callout{font-size:17px;line-height:1.7}.callout strong{color:var(--blue)}.notes{color:var(--muted);font-size:12px}.footer{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.pill-switch{display:flex;gap:8px;margin-bottom:14px}.pill-switch button{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px;cursor:pointer}.pill-switch button.active{background:var(--blue);color:#fff;border-color:var(--blue)}[data-month]{display:none}[data-month].active{display:block}@media(max-width:820px){.g3,.g2{grid-template-columns:1fr}.timeline{grid-template-columns:repeat(2,1fr)}.hero{padding:28px}.hero h1{font-size:28px}.row{grid-template-columns:95px 1fr 76px}.wrap{padding:20px 14px 48px}table{font-size:12px}.table-wrap{overflow:auto}}
+.percentiles{grid-template-columns:repeat(4,1fr)}.percentile{position:relative;overflow:hidden}.percentile::after{content:"";position:absolute;right:-24px;bottom:-30px;width:92px;height:92px;border-radius:50%;background:#2457d60b}.percentile .metric{color:var(--blue)}.example{margin-top:10px;padding:9px 11px;border-radius:9px;background:#f5f8ff;color:#40567c;font-size:12px}@media(max-width:820px){.percentiles{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="hero"><div class="eyebrow">Boloup · Payroll Operations Analysis</div><h1>Payroll 订单耗时分布：时间主要浪费在哪里？</h1><p>基于 2026 年 7–9 月订单事件，区分“已测得的耗时瓶颈”与“因事件链缺失而不可观测的流程盲区”。结论关注典型订单、长尾订单与少量高风险分支，不把缺失时间误当作零。</p><div class="badges"><span class="badge">订单归属：首次收到订单月份</span><span class="badge">时间精度：10 分钟桶</span><span class="badge">9 月截至 9 月 28 日</span><span class="badge">未完结订单不记 0</span></div></header>
+
+<section class="section"><h2>管理层结论</h2><div class="grid g3">
+<article class="card insight"><span class="rank">01</span><h3>可观测主瓶颈：待确认</h3><div class="metric">130 分钟</div><div class="label">7–9 月 P50 均为 130 分钟</div><p>典型订单的端到端 P50 仅为 130–140 分钟，而待确认 P50 已达 130 分钟。就当前可观测链路而言，普通订单的大部分时间集中在支付后等待确认。</p></article>
+<article class="card danger"><span class="rank">02</span><h3>最大长尾：申诉</h3><div class="metric">5,140 分钟</div><div class="label">8 月申诉处理 P50，约 3.6 天</div><p>申诉订单数量少，但单笔拖延极长；8 月 P95 达 50,355 分钟，约 35 天。它不是最大流量瓶颈，却是最重的体验与运营风险。</p></article>
+<article class="card warn"><span class="rank">03</span><h3>最大盲区：分配链路</h3><div class="metric">11 次</div><div class="label">7–9 月明确 assign 状态合计</div><p>“待分配”和“已分配等待币商”没有足够的开始/结束状态，无法判断是否存在隐性排队。当前报告不能证明它们快，也不能证明它们慢。</p></article>
+</div></section>
+
+<section class="section"><h2>订单流程：哪里可测，哪里看不见</h2><div class="timeline">
+<div class="step unknown"><b>收单等待上报审核</b><small>不可测：pending_review 几乎全部早于 received</small></div>
+<div class="step unknown"><b>待审核</b><small>可重新定义后计算；当前入口事件语义未确认</small></div>
+<div class="step unknown"><b>待分配</b><small>不可测：大量审核通过，但 assign 极少</small></div>
+<div class="step unknown"><b>已分配等待币商</b><small>不可测：有支付/超时，却缺可靠分配时间</small></div>
+<div class="step measured"><b>待确认</b><small>可测：支付或待确认 → 确认/申诉/取消</small></div>
+<div class="step measured"><b>申诉待处理</b><small>可测：申诉 → 申诉处理完成</small></div>
+<div class="step measured"><b>端到端完成</b><small>可测：收到订单 → 最终确认</small></div>
+<div class="step measured"><b>异常终止</b><small>可测但 9 月右删失较强</small></div>
+</div></section>
+
+<section class="section"><h2>P50、P75、P90、P95 如何阅读</h2><p>这些指标是耗时的<strong>分位数</strong>：把某阶段所有“已完成订单”按耗时从短到长排列，Px 表示约 x% 的订单耗时不超过该数值。分位数比平均值更不容易被少数极慢订单扭曲，也能直接观察长尾。</p><div class="grid percentiles">
+<article class="card percentile"><div class="metric">P50</div><h3>典型订单体验</h3><p>又称中位数。50% 的已完成订单耗时不超过它，另外 50% 更慢。</p><div class="example">例：待确认 P50＝130 分钟，表示约一半订单在 130 分钟内完成待确认。</div></article>
+<article class="card percentile"><div class="metric">P75</div><h3>偏慢订单水平</h3><p>75% 的已完成订单耗时不超过它；最慢的 25% 会花费更长时间。</p><div class="example">适合观察普通订单之外的积压是否开始明显扩大。</div></article>
+<article class="card percentile"><div class="metric">P90</div><h3>长尾订单水平</h3><p>90% 的已完成订单耗时不超过它；剩余 10% 是明显偏慢的长尾订单。</p><div class="example">可作为较严格的运营 SLA 或长尾监控线。</div></article>
+<article class="card percentile"><div class="metric">P95</div><h3>严重长尾水平</h3><p>95% 的已完成订单耗时不超过它；最慢的 5% 比该数值还慢。</p><div class="example">P95 持续升高，通常说明少量订单出现严重积压或异常处理。</div></article>
+</div><div class="card warn" style="margin-top:14px"><strong>口径提醒：</strong>本报告分位数只使用已经观察到阶段结束时间的订单。未完成订单不会按 0 分钟参与计算，因此还应同时看“完成率”和“未完成订单数”。特别是申诉阶段，如果仍有大量未完成订单，已完成订单的 P95 仍可能低估真实积压。</div></section>
+
+<section class="section"><h2>可测阶段耗时分布</h2><div class="pill-switch"><button class="active" data-btn="07">7月</button><button data-btn="08">8月</button><button data-btn="09">9月</button></div>
+<div class="card chart active" data-month="07"><h3>2026 年 7 月 · P50 对比（分钟，对数视觉压缩）</h3><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:92%"></div></div><span class="num">7,070</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:20%"></div></div><span class="num">30</span></div></div>
+<div class="card chart" data-month="08"><h3>2026 年 8 月 · P50 对比（分钟，对数视觉压缩）</h3><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:88%"></div></div><span class="num">5,140</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:34%"></div></div><span class="num">140</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:22%"></div></div><span class="num">40</span></div></div>
+<div class="card chart" data-month="09"><h3>2026 年 9 月 · P50 对比（分钟，对数视觉压缩）</h3><div class="row"><span>待确认</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>申诉待处理</span><div class="track"><div class="bar orange" style="width:82%"></div></div><span class="num">3,020</span></div><div class="row"><span>端到端完成</span><div class="track"><div class="bar" style="width:32%"></div></div><span class="num">130</span></div><div class="row"><span>异常终止</span><div class="track"><div class="bar red" style="width:12%"></div></div><span class="num">10</span></div></div>
+<p class="notes">申诉与普通阶段相差数十倍，为避免普通阶段完全不可见，图条采用对数视觉压缩；右侧数值为真实分钟数。</p></section>
+
+<section class="section"><h2>完整统计表</h2><div class="table-wrap"><table><thead><tr><th>阶段 / 月份</th><th>进入</th><th>完成</th><th>完成率</th><th>平均</th><th>P50</th><th>P75</th><th>P90</th><th>P95</th><th>最大值</th></tr></thead><tbody>
+<tr><td>待确认 · 7月</td><td>5,359</td><td>5,359</td><td>100.0%</td><td>87.7</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
+<tr><td>待确认 · 8月</td><td>6,898</td><td>6,898</td><td>100.0%</td><td>96.6</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
+<tr><td>待确认 · 9月</td><td>6,406</td><td>6,392</td><td>99.8%</td><td>95.0</td><td>130</td><td>130</td><td>130</td><td>130</td><td>130</td></tr>
+<tr><td>申诉待处理 · 7月</td><td>18</td><td>5</td><td>27.8%</td><td>7,368</td><td>7,070</td><td>8,620</td><td>14,656</td><td>16,668</td><td>18,680</td></tr>
+<tr><td>申诉待处理 · 8月</td><td>29</td><td>11</td><td>37.9%</td><td>17,356</td><td>5,140</td><td>31,970</td><td>34,670</td><td>50,355</td><td>66,040</td></tr>
+<tr><td>申诉待处理 · 9月</td><td>28</td><td>15</td><td>53.6%</td><td>3,898</td><td>3,020</td><td>5,065</td><td>9,106</td><td>11,792</td><td>14,130</td></tr>
+<tr><td>端到端完成 · 7月</td><td>5,518</td><td>5,356</td><td>97.1%</td><td>223.2</td><td>130</td><td>170</td><td>440</td><td>820</td><td>13,670</td></tr>
+<tr><td>端到端完成 · 8月</td><td>7,067</td><td>6,893</td><td>97.5%</td><td>254.4</td><td>140</td><td>210</td><td>630</td><td>1,020</td><td>11,970</td></tr>
+<tr><td>端到端完成 · 9月</td><td>6,605</td><td>6,388</td><td>96.7%</td><td>207.3</td><td>130</td><td>142.5</td><td>250</td><td>520</td><td>9,100</td></tr>
+<tr><td>异常终止 · 7月</td><td>5,518</td><td>1,783</td><td>32.3%</td><td>46.1</td><td>30</td><td>40</td><td>40</td><td>40</td><td>18,850</td></tr>
+<tr><td>异常终止 · 8月</td><td>7,067</td><td>2,456</td><td>34.8%</td><td>46.9</td><td>40</td><td>60</td><td>70</td><td>70</td><td>790</td></tr>
+<tr><td>异常终止 · 9月</td><td>6,605</td><td>190</td><td>2.9%</td><td>182.1</td><td>10</td><td>70</td><td>252</td><td>596</td><td>7,920</td></tr>
+</tbody></table></div><p class="notes">单位均为分钟。“异常终止完成率”表示观察到异常终止的比例，并非业务成功率；9 月受到观察窗口与状态补充限制，不适合与 7–8 月直接比较。</p></section>
+
+<section class="section"><h2>“浪费”应如何解读</h2><div class="grid g2">
+<article class="card"><h3>高频、稳定的时间占用</h3><p class="callout"><strong>待确认是最明确的普遍耗时点。</strong>三个月 P50 固定为 130 分钟，且进入订单量约 5,359–6,898。它影响大多数订单，优先级高于低频分支。</p><p>其均值仅为 87.7–96.6 分钟却低于 P50，说明分布可能受到时间桶、批量确认或部分非常快的订单影响。130 分钟的高度集中值得检查是否存在固定轮询、定时任务或统一超时机制。</p></article>
+<article class="card"><h3>低频、高损失的异常占用</h3><p class="callout"><strong>申诉是长尾风险，而非主流订单瓶颈。</strong>样本仅 18–29 单/月，但等待可达数天乃至数周。</p><p>8 月 P75 31,970 分钟、P95 50,355 分钟，表明少量积压严重拉高均值。应使用案件年龄、负责人和 SLA 分层治理，而不是只看整体平均。</p></article>
+</div></section>
+
+<section class="section"><h2>无法测量的四个阶段：不是“耗时为零”</h2><div class="grid g2">
+<article class="card warn"><h3>收单等待上报审核 / 待审核</h3><p>同订单中，<code>pending_review</code> 几乎全部早于 <code>received</code>：7 月 1,216/1,220，8 月 1,411/1,414，9 月 1,482/1,490。若直接相减将产生负数。</p><p><span class="status blocked">待业务确认</span> 需要确认 <code>payroll_order_received</code> 是否真的是系统首次收单，以及 <code>pending_review</code> 是否代表审核开始。确认后，“待审核”有机会独立重算。</p></article>
+<article class="card warn"><h3>待分配 / 已分配等待币商</h3><p>审核通过数据大量存在，但明确 <code>payroll_status=assign</code> 仅 7 月 0 次、8 月 1 次、9 月 10 次。支付或超时只能证明结束，不能倒推出分配开始。</p><p><span class="status blocked">埋点盲区</span> 当前不能判断分配环节是否浪费时间。它是需要优先修复的数据盲区，而不是可以忽略的快速环节。</p></article>
+</div></section>
+
+<section class="section"><h2>行动建议</h2><div class="grid g3">
+<article class="card"><span class="rank">A</span><h3>先拆解 130 分钟待确认</h3><p>按支付方式、币商、订单金额和小时段拆分；检查是否存在固定 120/130 分钟机制。目标是把 P50 从 130 分钟降到 60 分钟以内，并同步观察取消与申诉是否上升。</p></article>
+<article class="card"><span class="rank">B</span><h3>建立申诉年龄队列</h3><p>设置 24小时、72小时、7天案件年龄分层；追踪未完成率而不只看已完成案件分位数。优先处理 8 月暴露出的超长积压机制。</p></article>
+<article class="card"><span class="rank">C</span><h3>修复上游状态链</h3><p>确认真实收单、审核开始、首次分配事件，并确保同一 <code>order_id</code> 上报。修复后才能回答“审核还是分配更慢”，并构建完整的端到端时间分解。</p></article>
+</div></section>
+
+<section class="section"><div class="card"><h2>结论边界</h2><p>本报告能确认：在当前可观测流程中，<strong>待确认是覆盖面最大的耗时阶段，申诉是最严重的长尾阶段</strong>。本报告不能确认：审核与分配环节没有浪费，因为这四个阶段的事件链不满足计算条件。</p><p>9 月仅统计至 9 月 28 日，属于未完整月份；在途订单按右删失处理。时间采用 10 分钟桶，单笔耗时误差上限约 10 分钟。P50/P75/P90/P95 分别表示 50%/75%/90%/95% 的已完成订单耗时不超过该数值。</p></div></section>
+<footer class="footer">数据来源：Boloup 数数事件分析；分析范围：2026-07-01 至 2026-09-28。生成日期：2026-09-30。</footer>
+</main><script>document.querySelectorAll('[data-btn]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-btn]').forEach(x=>x.classList.remove('active'));document.querySelectorAll('[data-month]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelector('[data-month="'+b.dataset.btn+'"]').classList.add('active')})</script></body></html>
