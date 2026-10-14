@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="BoloUp Talented Host与Star Host按1荣耀值等于15钻石核算的任务方案。">
+  <link rel="icon" href="data:,">
+  <title>BoloUp Host 荣耀值方案｜1:15核算版本</title>
+  <style>
+    :root{
+      --ink:#17313c;--muted:#647982;--deep:#064b62;--line:#d7e5e9;
+      --page:#f2f8fa;--cyan:#e0f7fa;--blue:#0e8fa7;--green:#087853;
+      --green-bg:#eaf8f2;--orange:#9a570c;--orange-bg:#fff4e5;
+      --purple:#6447a7;--purple-bg:#f2effc;--shadow:0 16px 42px rgba(9,59,75,.08);
+      --page-width:min(1180px,calc(100vw - 32px));
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--page);color:var(--ink);font:15px/1.62 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}.container{width:var(--page-width);margin:auto}a{color:inherit}
+    .topbar{position:sticky;top:0;z-index:20;background:rgba(6,75,98,.96);border-bottom:1px solid rgba(255,255,255,.16);color:#fff;backdrop-filter:blur(14px)}.topbar-inner{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:900;letter-spacing:.02em}.brand small{display:block;color:#b9e2e9;font-size:10px;font-weight:700;letter-spacing:.12em}.nav{display:flex;gap:5px;flex-wrap:wrap}.nav a{padding:7px 10px;border-radius:8px;color:#d9f2f5;text-decoration:none;font-size:12px;font-weight:800;white-space:nowrap}.nav a:hover{background:rgba(255,255,255,.13);color:#fff}
+    .hero{padding:48px 0 38px;color:#fff;background:radial-gradient(circle at 88% 8%,rgba(54,204,216,.27),transparent 26%),linear-gradient(135deg,#06475d,#08738a)}.hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:36px;align-items:end}.eyebrow{margin:0 0 8px;color:#95e8ee;font-size:11px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}h1{margin:0;max-width:820px;font-size:52px;line-height:1.08;letter-spacing:-.045em}.lead{max-width:790px;margin:13px 0 0;color:#d7eff3;font-size:16px}.status{padding:18px;border:1px solid rgba(255,255,255,.23);border-radius:14px;background:rgba(255,255,255,.1)}.status b{display:block;margin-bottom:5px;font-size:16px}.status p{margin:0;color:#d6edf1}.badge{display:inline-flex;margin-bottom:9px;padding:5px 10px;border-radius:999px;background:#ffe6aa;color:#684100;font-size:12px;font-weight:900}
+    main{padding:28px 0 58px}.section{scroll-margin-top:92px;margin-top:20px;padding:25px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:var(--shadow)}.section:first-child{margin-top:0}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:start;margin-bottom:16px}.section-no{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.14em}h2{margin:3px 0 0;color:var(--deep);font-size:33px;line-height:1.16;letter-spacing:-.03em}h3{margin:22px 0 8px;color:var(--deep);font-size:18px}.section-note{max-width:540px;margin:0;color:var(--muted)}p{margin:0 0 10px}p:last-child{margin-bottom:0}
+    .summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.card{min-width:0;padding:18px;border:1px solid var(--line);border-radius:13px;background:#f8fbfc}.kicker{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.big{margin:5px 0 7px;color:var(--deep);font-size:25px;font-weight:900;line-height:1.13}.card p{color:var(--muted)}
+    .table-wrap{width:100%;max-width:100%;overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}table{width:100%;min-width:720px;border-collapse:collapse}th,td{padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:middle}th{background:var(--deep);color:#fff;font-size:12px;line-height:1.35}td:not(:first-child),th:not(:first-child){text-align:center}tbody tr:nth-child(even) td{background:#f8fbfc}tbody tr:last-child td{border-bottom:0}.highlight td{background:#eaf8f2!important;font-weight:850}.max td{background:#e3f3f7!important;color:var(--deep);font-weight:900}.changed{color:var(--green);font-weight:900}.table-note{margin:-3px 0 9px;color:var(--muted);font-size:13px}
+    .formula{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0;padding:15px 17px;border-radius:11px;background:var(--cyan);color:var(--deep);font-weight:900}.formula span{padding:5px 9px;border:1px solid rgba(6,75,98,.14);border-radius:8px;background:rgba(255,255,255,.76)}
+    .callout{margin-top:15px;padding:14px 16px;border-left:5px solid;border-radius:9px}.callout strong{display:block;margin-bottom:3px}.callout.info{border-color:var(--blue);background:var(--cyan);color:#075c6e}.callout.ok{border-color:var(--green);background:var(--green-bg);color:#086044}.callout.warn{border-color:#d98920;background:var(--orange-bg);color:#7c490a}.callout.purple{border-color:var(--purple);background:var(--purple-bg);color:#4f388a}
+    .footer{padding:0 0 38px;color:var(--muted);text-align:center;font-size:12px}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}.summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.topbar-inner{min-height:auto;padding:10px 0;display:block}.brand{margin-bottom:8px}.nav{display:flex;flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}.nav a{flex:0 0 auto}}
+    @media(max-width:700px){h1{font-size:36px}.hero{padding:40px 0 34px}.section{padding:21px 17px;border-radius:14px}.section-head{display:block}.section-note{margin-top:9px}.summary-grid{grid-template-columns:1fr}h2{font-size:27px}th,td{padding:10px 11px}}
+    @media print{body{background:#fff;font-size:11px}.topbar{display:none}.hero{padding:28px 0;background:#fff;color:var(--ink);border-bottom:2px solid var(--deep)}.hero .lead{color:var(--muted)}.status{background:#fff;border-color:var(--line)}.status p{color:var(--muted)}main{padding-top:18px}.section{box-shadow:none;break-inside:avoid}.table-wrap{overflow:visible}table{min-width:0}}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">BOLOUP POLICY CENTER<small>HOST HONOR VALUE POLICY · 1:15 VERSION</small></div>
+      <nav class="nav" aria-label="页面目录"><a href="#overview">更新概览</a><a href="#method">核算方法</a><a href="#talented">Talented Host</a><a href="#star">Star Host</a><a href="#summary">结论</a></nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-grid">
+      <div><p class="eyebrow">HONOR VALUE COST MODEL · 1:15</p><h1>主播荣耀值方案<br>1:15 核算版本</h1><p class="lead">在任务奖励和最高周薪不变的前提下，将内部核算口径由“1荣耀值＝10钻石”调整为“1荣耀值＝15钻石”，重新计算Talented Host与Star Host的任务门槛。</p></div>
+      <aside class="status"><span class="badge">独立测算版本 · 未发布</span><b>原线上方案保持不变</b><p>本页只用于比较和内部评估，不代表正式政策已经更新。</p></aside>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="overview" class="section">
+      <div class="section-head"><div><span class="section-no">01 / OVERVIEW</span><h2>1:15版本更新概览</h2></div><p class="section-note">荣耀值门槛数字约下降三分之一，但每个荣耀值对应的钻石价值提高50%，经济门槛并未同比降低。</p></div>
+      <div class="summary-grid">
+        <div class="card"><span class="kicker">核算口径</span><div class="big">1 : 15</div><p>1荣耀值按15钻石计算。</p></div>
+        <div class="card"><span class="kicker">Talented 淘汰</span><div class="big">6K／8K／11K</div><p>分别对应Lv.1、Lv.2、Lv.3。</p></div>
+        <div class="card"><span class="kicker">Star 关键门槛</span><div class="big">20K／28K／110K</div><p>用于Lv.1、Lv.2、Lv.3保级升级。</p></div>
+        <div class="card"><span class="kicker">薪资</span><div class="big">保持不变</div><p>Talented最高$26；Star最高$133。</p></div>
+      </div>
+      <h3>当前1:10版本与1:15版本</h3>
+      <div class="table-wrap"><table><thead><tr><th>项目</th><th>当前1:10版本</th><th>建议1:15版本</th><th>处理方式</th></tr></thead><tbody>
+        <tr><td>Talented淘汰门槛（Lv.1／Lv.2／Lv.3）</td><td>8K／12K／16K</td><td class="changed">6K／8K／11K</td><td>按2/3折算后向上取整</td></tr>
+        <tr><td>Talented后续礼物任务</td><td>20K／40K</td><td class="changed">14K／28K</td><td>保留原50K／100K Lucky Gift经济价值</td></tr>
+        <tr><td>Star关键等级门槛</td><td>28K／40K／160K</td><td class="changed">20K／28K／110K</td><td>分别对应Lv.1／Lv.2／Lv.3</td></tr>
+        <tr><td>Star礼物任务阶梯</td><td>30K／40K／80K／100K／160K／230K／280K</td><td class="changed">20K／28K／55K／70K／110K／155K／190K</td><td>等值折算并保持高阶任务间隔</td></tr>
+        <tr><td>任务奖励与最高周薪</td><td>现行金额</td><td>不变</td><td>只调整门槛，不调整奖励</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="section-head"><div><span class="section-no">02 / METHOD</span><h2>核算方法与取整原则</h2></div></div>
+      <div class="formula"><span>新门槛</span>＝<span>当前1:10门槛</span>×<span>10 ÷ 15</span>＝<span>当前门槛的2/3</span></div>
+      <div class="table-wrap"><table><thead><tr><th>礼物类型</th><th>收益倍数</th><th>计算示例</th><th>1:15等值荣耀值</th></tr></thead><tbody>
+        <tr><td>Lucky Gift</td><td class="changed">按4倍礼物收益</td><td>20K钻石×4＝80K收益等值钻石</td><td>80K÷15＝5.33K</td></tr>
+        <tr><td>Luxurious Gift</td><td>按普通礼物1倍收益</td><td>1M钻石×1＝1M收益等值钻石</td><td>1M÷15＝66.67K</td></tr>
+      </tbody></table></div>
+      <div class="callout info"><strong>取整原则</strong>精确值出现小数时原则上向上取整，并优先选择便于政策解释和任务排列的整数，避免因为取整而降低原有经济价值。</div>
+    </section>
+
+    <section id="talented" class="section">
+      <div class="section-head"><div><span class="section-no">03 / TALENTED HOST</span><h2>自动升级，只设每周淘汰门槛</h2></div><p class="section-note">Lv.1为加入计划第1周，Lv.2为第2周，Lv.3为第3周及以后；达到门槛后仍按加入周数自动升级。</p></div>
+      <h3>淘汰门槛对比</h3>
+      <div class="table-wrap"><table><thead><tr><th>等级</th><th>周期</th><th>原Lucky Gift门槛</th><th>当前1:10</th><th>建议1:15</th><th>未达标</th></tr></thead><tbody>
+        <tr><td>Lv.1（L）</td><td>第1周</td><td>20K Lucky Gift</td><td>8K</td><td class="changed">6K荣耀值</td><td>淘汰</td></tr>
+        <tr><td>Lv.2（K）</td><td>第2周</td><td>30K Lucky Gift</td><td>12K</td><td class="changed">8K荣耀值</td><td>淘汰</td></tr>
+        <tr><td>Lv.3（J）</td><td>第3周及以后</td><td>40K Lucky Gift</td><td>16K</td><td class="changed">11K荣耀值</td><td>淘汰</td></tr>
+      </tbody></table></div>
+      <div class="callout purple"><strong>执行规则不变</strong>Talented Host没有独立的保级、升级或降级门槛；当周达到当前档位淘汰门槛后保留资格，并按加入计划的周数自动升级。</div>
+
+      <h3>Talented Host总任务列表与奖励</h3>
+      <p class="table-note">每日最多3小时直播计入任务；每一行为独立任务，实际周薪为已完成任务奖励之和。</p>
+      <div class="table-wrap"><table><thead><tr><th>任务要求</th><th>Lv.3</th><th>Lv.2</th><th>Lv.1</th></tr></thead><tbody>
+        <tr><td>直播时长达到240分钟</td><td>$2</td><td>$1</td><td>$1</td></tr>
+        <tr><td>直播时长达到480分钟</td><td>$3</td><td>$2</td><td>$2</td></tr>
+        <tr><td>直播时长达到840分钟</td><td>$4</td><td>$3</td><td>$2</td></tr>
+        <tr class="highlight"><td>达到当前淘汰门槛</td><td>11K荣耀值 → $5</td><td>8K荣耀值 → $5</td><td>6K荣耀值 → $5</td></tr>
+        <tr><td>荣耀值达到14K</td><td>$6</td><td>$5</td><td>$5</td></tr>
+        <tr><td>荣耀值达到28K</td><td>$6</td><td>$5</td><td>$5</td></tr>
+        <tr class="max"><td>最高周薪</td><td>$26</td><td>$21</td><td>$20</td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><strong>经济价值检查</strong>6K、8K、11K荣耀值分别约对应$9、$12、$16.5礼物价值；原淘汰门槛对应约$8、$12、$16，因此向上取整后没有降低基础经济价值。</div>
+    </section>
+
+    <section id="star" class="section">
+      <div class="section-head"><div><span class="section-no">04 / STAR HOST</span><h2>每周保级、升级和降级</h2></div><p class="section-note">达到升级门槛，下周升级一级；未达到保级门槛，下周下降一级；每周最多升降一级。</p></div>
+      <h3>保级、升级与降级</h3>
+      <div class="table-wrap"><table><thead><tr><th>等级</th><th>当前1:10范围</th><th>建议1:15范围</th><th>升级条件</th><th>未保级结果</th></tr></thead><tbody>
+        <tr><td>Lv.3（G）</td><td>荣耀值≥160K</td><td class="changed">荣耀值≥110K</td><td>最高等级</td><td>&lt;110K降至Lv.2</td></tr>
+        <tr><td>Lv.2（H）</td><td>40K≤荣耀值&lt;160K</td><td class="changed">28K≤荣耀值&lt;110K</td><td>≥110K升至Lv.3</td><td>&lt;28K降至Lv.1</td></tr>
+        <tr><td>Lv.1（I）</td><td>28K≤荣耀值&lt;40K</td><td class="changed">20K≤荣耀值&lt;28K</td><td>≥28K升至Lv.2</td><td>&lt;20K降至Talented Host Lv.3</td></tr>
+      </tbody></table></div>
+
+      <h3>礼物任务门槛对比</h3>
+      <div class="table-wrap"><table><thead><tr><th>原礼物任务</th><th>当前1:10门槛</th><th>1:15精确值</th><th>建议1:15门槛</th><th>Lv.3／Lv.2／Lv.1奖励</th></tr></thead><tbody>
+        <tr><td>70K Lucky Gift</td><td>30K</td><td>20K</td><td class="changed">20K</td><td>$10／$8／$5</td></tr>
+        <tr><td>100K Lucky Gift</td><td>40K</td><td>26.67K</td><td class="changed">28K</td><td>$5／$4／$3</td></tr>
+        <tr><td>200K Lucky Gift</td><td>80K</td><td>53.33K</td><td class="changed">55K</td><td>$15／$12／$10</td></tr>
+        <tr><td>1M Luxurious Gift</td><td>100K</td><td>66.67K</td><td class="changed">70K</td><td>$15／$12／$10</td></tr>
+        <tr><td>400K Lucky Gift</td><td>160K</td><td>106.67K</td><td class="changed">110K</td><td>$20／$12／$10</td></tr>
+        <tr><td>2.5M Luxurious Gift</td><td>230K</td><td>153.33K</td><td class="changed">155K</td><td>$20／$15／$10</td></tr>
+        <tr><td>650K Lucky Gift</td><td>280K</td><td>186.67K</td><td class="changed">190K</td><td>$25／$15／$12</td></tr>
+      </tbody></table></div>
+      <div class="callout ok"><strong>新任务阶梯</strong>20K → 28K → 55K → 70K → 110K → 155K → 190K。最后两档保持35K间隔，避免2.5M Luxurious Gift和650K Lucky Gift的等值结果过于接近。</div>
+
+      <h3>Star Host总任务列表与奖励</h3>
+      <p class="table-note">每日最多4小时直播计入任务；每一行为独立任务，实际周薪为已完成任务奖励之和。</p>
+      <div class="table-wrap"><table><thead><tr><th>任务要求</th><th>Lv.3</th><th>Lv.2</th><th>Lv.1</th></tr></thead><tbody>
+        <tr><td>每周直播时长达到8小时</td><td>$6</td><td>$5</td><td>$4</td></tr>
+        <tr><td>每周直播时长达到10小时</td><td>$6</td><td>$5</td><td>$4</td></tr>
+        <tr><td>每周直播时长达到20小时</td><td>$6</td><td>$5</td><td>$4</td></tr>
+        <tr><td>荣耀值达到20K</td><td>$10</td><td>$8</td><td>$5</td></tr>
+        <tr><td>每周直播时长达到24小时</td><td>$5</td><td>$4</td><td>$3</td></tr>
+        <tr><td>荣耀值达到28K</td><td>$5</td><td>$4</td><td>$3</td></tr>
+        <tr><td>荣耀值达到55K</td><td>$15</td><td>$12</td><td>$10</td></tr>
+        <tr><td>荣耀值达到70K</td><td>$15</td><td>$12</td><td>$10</td></tr>
+        <tr><td>荣耀值达到110K</td><td>$20</td><td>$12</td><td>$10</td></tr>
+        <tr><td>荣耀值达到155K</td><td>$20</td><td>$15</td><td>$10</td></tr>
+        <tr><td>荣耀值达到190K</td><td>$25</td><td>$15</td><td>$12</td></tr>
+        <tr class="max"><td>最高周薪</td><td>$133</td><td>$97</td><td>$75</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section id="summary" class="section">
+      <div class="section-head"><div><span class="section-no">05 / SUMMARY</span><h2>建议结论与保持不变内容</h2></div></div>
+      <div class="table-wrap"><table><thead><tr><th>类别</th><th>1:15版本建议</th><th>保持不变</th></tr></thead><tbody>
+        <tr><td>Talented Host</td><td class="changed">淘汰6K／8K／11K；后续任务14K／28K</td><td>自动升级机制、直播任务和最高周薪</td></tr>
+        <tr><td>Star Host</td><td class="changed">关键门槛20K／28K／110K；任务最高190K</td><td>每周升降一级、直播任务和最高周薪</td></tr>
+        <tr><td>薪资</td><td>只替换荣耀值门槛</td><td>Talented $26／$21／$20；Star $133／$97／$75</td></tr>
+        <tr><td>其他政策</td><td>不因本次核算调整而修改</td><td>申请、人工审核、生效时间、直播规范、违规处理和资格取消规则</td></tr>
+      </tbody></table></div>
+      <div class="callout warn"><strong>版本边界</strong>这是按1荣耀值＝15钻石建立的独立测算稿。只有在业务确认后，才能替换当前1:10页面或用于正式政策。</div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container">BoloUp Policy Center · Honor Value Policy Comparison · 1:15 Local Draft</div></footer>
+</body>
+</html>
