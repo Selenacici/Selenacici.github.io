@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Payroll 每周考核与动态分单方案｜领导评审版</title>
+  <style>
+    :root{--ink:#172033;--muted:#64748b;--line:#e2e8f0;--soft:#f6f8fb;--navy:#163a63;--blue:#2563eb;--green:#15803d;--amber:#b45309;--red:#b91c1c;--purple:#6d28d9}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#eef2f7;color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    .page{max-width:1180px;margin:28px auto;background:#fff;box-shadow:0 16px 50px rgba(15,23,42,.09)}
+    header{padding:54px 64px 42px;background:linear-gradient(135deg,#102b4c,#205b93);color:#fff}
+    .eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}.hero h1{font-size:36px;line-height:1.2;margin:12px 0 14px}.hero p{max-width:850px;margin:0;color:#dbeafe;font-size:17px}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.badge{padding:6px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);font-size:13px}
+    main{padding:44px 64px 64px}section{margin:0 0 46px}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:18px}.section-head h2{font-size:24px;margin:0}.section-head p{margin:0;color:var(--muted)}
+    .summary{padding:22px 24px;border-left:5px solid var(--blue);background:#eff6ff;border-radius:0 12px 12px 0;font-size:17px}.summary strong{color:#123c75}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{border:1px solid var(--line);border-radius:14px;padding:22px;background:#fff}.card .no{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:#eaf1ff;color:var(--blue);font-weight:750}.card h3{margin:14px 0 4px;font-size:19px}.card p{margin:0;color:var(--muted)}.card .result{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-weight:700}
+    .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;vertical-align:top;padding:14px 16px;border-bottom:1px solid var(--line)}th{background:#f8fafc;color:#475569;font-size:13px}tr:last-child td{border-bottom:0}.good{color:var(--green);font-weight:700}.warn{color:var(--amber);font-weight:700}.bad{color:var(--red);font-weight:700}.pill{display:inline-block;padding:2px 9px;border-radius:999px;background:#f1f5f9;font-size:12px;font-weight:700;white-space:nowrap}
+    .rule{display:grid;grid-template-columns:180px 1fr;gap:24px;padding:20px 0;border-top:1px solid var(--line)}.rule:first-child{border-top:0}.rule h3{margin:0}.rule p{margin:0 0 8px}.formula{display:inline-block;background:#0f172a;color:#fff;padding:7px 11px;border-radius:7px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.step{padding:16px 12px;border-radius:12px;background:var(--soft);text-align:center;border:1px solid var(--line)}.step b{display:block}.step small{color:var(--muted)}.arrow{display:none}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{border:1px solid var(--line);border-radius:14px;padding:22px}.panel h3{margin:0 0 12px}.panel ul{margin:0;padding-left:20px}.panel li+li{margin-top:7px}
+    .decision{background:#f8fafc;border-radius:14px;padding:26px}.decision-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}.decision-item{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px}.decision-item b{display:block;margin-bottom:5px}.footnote{font-size:13px;color:var(--muted)}
+    footer{padding:22px 64px;background:#f8fafc;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:var(--muted);font-size:13px}
+    @media(max-width:850px){.page{margin:0}.hero h1{font-size:28px}header,main,footer{padding-left:24px;padding-right:24px}.cards,.two,.decision-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.rule{grid-template-columns:1fr;gap:6px}.section-head{align-items:flex-start;flex-direction:column}}
+    @media print{body{background:#fff}.page{margin:0;max-width:none;box-shadow:none}section{break-inside:avoid}.card,.panel,.table-wrap{break-inside:avoid}}
+  </style>
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="eyebrow">Payroll Governance Proposal · 2026</div>
+    <h1>Payroll 每周考核与动态分单方案</h1>
+    <p>用三项指标解决三个问题：是否持续接单、是否造成订单损失、是否能快速付款。规则面向 Payroll 简单可理解，面向运营可执行，面向管理层可复核。</p>
+    <div class="badges"><span class="badge">领导评审版</span><span class="badge">每周一检查上周</span><span class="badge">先提醒、再调整、后复核</span></div>
+  </header>
+
+  <main>
+    <section>
+      <div class="summary"><strong>一句话规则：</strong>保持正常接单、少让订单自动超时、尽快完成付款，就能保持 Payroll 资格；付款越快，分单越多。单周表现不好只提醒，只有连续多周没有改善且当地有替代能力，才进入淘汰复核。</div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>一、三项核心考核</h2><p>其余内容均为保护规则或特殊情况</p></div>
+      <div class="cards">
+        <article class="card"><span class="no">1</span><h3>订单数量</h3><p>看 Payroll 是否持续参与本国订单处理，以“本国成功付款订单占比”为主。</p><span class="result">影响：资格保留</span></article>
+        <article class="card"><span class="no">2</span><h3>自动超时</h3><p>同时看超时数量和超时率，避免少量订单被百分比误伤。</p><span class="result">影响：提醒、降权、资格复核</span></article>
+        <article class="card"><span class="no">3</span><h3>付款速度</h3><p>统计审核通过到付款成功的 P50、P90，越快获得越多分单。</p><span class="result">影响：只调权重，不单独淘汰</span></article>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>二、可直接执行的每周标准</h2><p>每周一出具上周结果卡</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>指标</th><th>统计口径</th><th>正常</th><th>触发处理</th><th>直接结果</th></tr></thead>
+        <tbody>
+          <tr><td><b>订单数量</b></td><td>上周该 Payroll 成功付款订单 ÷ 本国成功付款订单</td><td>达到本国最低占比</td><td>连续低于最低占比才逐级处理</td><td>记录 → 提醒 → 降低分单 → 资格复核</td></tr>
+          <tr><td><b>自动超时</b></td><td>上周自动超时订单 ÷ 上周实际接单</td><td>&lt;2 单或 &lt;20%</td><td>数量和比例同时达到阈值</td><td>提醒或降权；持续严重才复核资格</td></tr>
+          <tr><td><b>付款速度</b></td><td>审核通过 → 付款成功</td><td>P50 ≤2小时且 P90 ≤12小时</td><td>达到更快或更慢等级</td><td>分单 +30%、+10%、不变、−20%或−40%</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>三、订单数量：按国家设最低份额</h2><p>正式考核看占比，订单数仅为理解参考</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>国家类型</th><th>每周最低份额</th><th>历史参考量</th><th>适用说明</th></tr></thead>
+        <tbody>
+          <tr><td>尼日利亚</td><td><b>本国订单的 5%</b></td><td>约 20 单/周</td><td>订单多、Payroll 多，使用较高门槛</td></tr>
+          <tr><td>菲律宾</td><td><b>本国订单的 3%</b></td><td>约 10 单/周</td><td>成熟竞争国家</td></tr>
+          <tr><td>尼泊尔</td><td><b>本国订单的 1.5%</b></td><td>约 5 单/周</td><td>保留较低基础门槛</td></tr>
+          <tr><td>其他成熟国家</td><td><b>本国订单的 3%</b></td><td>随国家订单量变化</td><td>国家达到稳定订单量和竞争数量后启用</td></tr>
+          <tr><td>仅 1–2 个 Payroll 的国家</td><td><span class="pill">暂不考核低量淘汰</span></td><td>—</td><td>先保障支付覆盖，保留资格</td></tr>
+        </tbody>
+      </table></div>
+      <p class="footnote">连续低量处理：第1周记录，第2周提醒，第4周分单减50%，第6周进入资格复核；只有改善后仍未恢复且本国有替代能力，才考虑移除。订单占比每季度按真实分布复核一次。</p>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>四、自动超时：数量与比例同时判断</h2><p>解决“2单超时1单”和“20单超时10单”不能等同处理的问题</p></div>
+      <div class="rule"><h3>计算公式</h3><div><span class="formula">自动超时率 = 自动超时订单数 ÷ 实际接单数</span></div></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>上周实际接单</th><th>判断条件</th><th>结果</th></tr></thead>
+        <tbody>
+          <tr><td>&lt;5 单</td><td>样本太少</td><td>只记录，不处罚</td></tr>
+          <tr><td>5–9 单</td><td>自动超时 ≥2 单</td><td class="warn">提醒，不降权</td></tr>
+          <tr><td>≥10 单</td><td>超时 ≥2 单 且 超时率 ≥20%</td><td class="warn">预警</td></tr>
+          <tr><td>≥10 单</td><td>超时 ≥3 单 且 超时率 ≥30%</td><td class="bad">严重预警</td></tr>
+          <tr><td>≥10 单</td><td>超时 ≥5 单 且 超时率 ≥40%</td><td class="bad">本周分单降低 50%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="footnote">连续处理：首次预警只提醒；连续2周严重，分单−30%；4周内有3周严重，分单−50%并进入改善期；6周内有4周严重，进入资格复核。2026年8月31日后，超过200美元订单默认不自动流转，因此不计入自动超时率，改作“大额订单延迟”单独观察。</p>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>五、付款速度：越快，分单越多</h2><p>付款慢只降权，不单独导致淘汰</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>速度等级</th><th>P50</th><th>P90</th><th>下周分单调整</th></tr></thead>
+        <tbody>
+          <tr><td class="good">优秀</td><td>≤30分钟</td><td>≤2小时</td><td class="good">+30%</td></tr>
+          <tr><td class="good">良好</td><td>≤60分钟</td><td>≤6小时</td><td class="good">+10%</td></tr>
+          <tr><td>一般</td><td>≤2小时</td><td>≤12小时</td><td>保持不变</td></tr>
+          <tr><td class="warn">较慢</td><td>&gt;2小时</td><td>&gt;12小时</td><td class="warn">任一项触发：−20%</td></tr>
+          <tr><td class="bad">严重偏慢</td><td>—</td><td>&gt;24小时</td><td class="bad">−40%</td></tr>
+        </tbody>
+      </table></div>
+      <div class="two" style="margin-top:16px">
+        <div class="panel"><h3>P50 / P90 怎么理解？</h3><p><b>P50</b>：一半订单在这个时间内付款，代表日常速度。<br><b>P90</b>：九成订单在这个时间内付款，代表长尾慢单。</p></div>
+        <div class="panel"><h3>样本量保护</h3><p>&lt;10个成功付款订单：不评级；10–19单：仅看P50，调整不超过10%；≥20单：同时使用P50和P90。进入“优秀、良好、一般”要求P50和P90同时达标。</p></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>六、统一处理流程</h2><p>不因一次表现不好直接淘汰</p></div>
+      <div class="flow">
+        <div class="step"><b>1. 记录</b><small>单周异常</small></div>
+        <div class="step"><b>2. 提醒</b><small>说明问题与标准</small></div>
+        <div class="step"><b>3. 调整分单</b><small>按规则降权</small></div>
+        <div class="step"><b>4. 改善期</b><small>给出恢复机会</small></div>
+        <div class="step"><b>5. 资格复核</b><small>人工决定保留或移除</small></div>
+      </div>
+      <p class="footnote">最终移除必须同时满足：连续低量或严重超时、已正式提醒、已获得改善时间、改善后仍未恢复、异常并非平台/银行/支付渠道造成、所在国家有其他 Payroll 可以承接订单。</p>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>七、特殊情况与保护规则</h2><p>作为补充，不占用核心考核页面</p></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>特殊情况</th><th>处理方式</th></tr></thead>
+        <tbody>
+          <tr><td>新 Payroll（入驻未满4周）</td><td>仅展示数据与辅导，不做低量淘汰；完成观察期后转正式考核。</td></tr>
+          <tr><td>小国家 / 仅1–2个 Payroll</td><td>优先保障支付覆盖，不因低订单量淘汰；自动超时仍记录并提醒。</td></tr>
+          <tr><td>上周实际获得少于5单</td><td>订单量与自动超时均只记录，不处罚。</td></tr>
+          <tr><td>本国上周总订单少于50单</td><td>暂停低量资格考核，避免平台供单不足造成误判。</td></tr>
+          <tr><td>平台、银行或支付通道异常</td><td>经核实后剔除对应订单或豁免当周，不计为 Payroll 责任。</td></tr>
+          <tr><td>事先报备暂停服务</td><td>报备期间不做低量处罚；恢复后重新进入正常考核。</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>八、管理层可行性判断</h2><p>建议批准“分阶段试运行”，不建议一次性正式淘汰</p></div>
+      <div class="two">
+        <div class="panel"><h3>为什么可行</h3><ul><li>指标少：Payroll 只需理解三项规则。</li><li>行为与结果直接对应：接单决定资格，超时决定风险，速度决定分单。</li><li>同时看数量与比例，能降低小样本误伤。</li><li>保留人工复核和国家供给保护，不会因算法直接中断支付能力。</li></ul></div>
+        <div class="panel"><h3>上线前必须确认</h3><ul><li>按 Payroll 稳定输出“审核通过→付款成功”准确时长。</li><li>自动超时必须区分≤200美元与&gt;200美元订单。</li><li>每周记录实际分配量、接单量、付款成功量和异常原因。</li><li>运营具备每周一发结果卡、处理申诉和人工复核的负责人。</li></ul></div>
+      </div>
+      <div class="decision">
+        <b>建议上线节奏</b>
+        <div class="decision-grid">
+          <div class="decision-item"><b>第1–4周｜影子运行</b><span>只发结果，不调权、不淘汰；校验数据与阈值。</span></div>
+          <div class="decision-item"><b>第5–8周｜调整分单</b><span>启用付款速度和自动超时权重；异常仍人工复核。</span></div>
+          <div class="decision-item"><b>第9周起｜正式考核</b><span>启用低量与严重超时资格复核；移除仍需运营确认。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-head"><h2>九、数据依据与已知限制</h2><p>避免把试行阈值误解为已充分验证的行业标准</p></div>
+      <div class="panel">
+        <ul>
+          <li><b>已确认的Q3业务规模：</b>2026年7–9月成功付款订单分别为5,085、6,319、6,350单；活跃 Payroll 分别为39、36、39个。</li>
+          <li><b>已确认的成熟国家：</b>尼日利亚、菲律宾、尼泊尔；Q3成功付款订单分别为4,773、4,640、3,899单。</li>
+          <li><b>已确认的政策断点：</b>2026年8月31日后，超过200美元订单默认不自动流转，改革前后的自动超时总量不能直接横向比较。</li>
+          <li><b>仍需影子期验证：</b>每个 Payroll 的“审核通过→付款成功”精确 P50/P90 尚需稳定取数，因此付款速度档位属于建议试行阈值，影子期验证通过后再正式生效。</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <footer><span>Payroll 每周考核与动态分单方案</span><span>版本：领导评审版 · 2026-10-21</span></footer>
+</div>
+</body>
+</html>
